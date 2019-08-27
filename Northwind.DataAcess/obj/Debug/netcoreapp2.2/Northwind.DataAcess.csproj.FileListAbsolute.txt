@@ -1,0 +1,14 @@
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.DataAcess.deps.json
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.DataAcess.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.DataAcess.pdb
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\obj\Debug\netcoreapp2.2\Northwind.DataAcess.csprojAssemblyReference.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\obj\Debug\netcoreapp2.2\Northwind.DataAcess.csproj.CoreCompileInputs.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\obj\Debug\netcoreapp2.2\Northwind.DataAcess.AssemblyInfoInputs.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\obj\Debug\netcoreapp2.2\Northwind.DataAcess.AssemblyInfo.cs
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\obj\Debug\netcoreapp2.2\Northwind.DataAcess.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\obj\Debug\netcoreapp2.2\Northwind.DataAcess.pdb
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.DataAcess.runtimeconfig.json
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.DataAcess.runtimeconfig.dev.json
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.Entities.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.Entities.pdb
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\obj\Debug\netcoreapp2.2\Northwind.DataAcess.csproj.CopyComplete

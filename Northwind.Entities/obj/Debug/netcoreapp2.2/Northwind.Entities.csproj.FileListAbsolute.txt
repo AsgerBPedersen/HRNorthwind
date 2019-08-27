@@ -1,0 +1,11 @@
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\bin\Debug\netcoreapp2.2\Northwind.Entities.deps.json
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\bin\Debug\netcoreapp2.2\Northwind.Entities.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\obj\Debug\netcoreapp2.2\Northwind.Entities.csproj.CoreCompileInputs.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\obj\Debug\netcoreapp2.2\Northwind.Entities.AssemblyInfoInputs.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\obj\Debug\netcoreapp2.2\Northwind.Entities.AssemblyInfo.cs
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\obj\Debug\netcoreapp2.2\Northwind.Entities.csprojAssemblyReference.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\bin\Debug\netcoreapp2.2\Northwind.Entities.runtimeconfig.json
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\bin\Debug\netcoreapp2.2\Northwind.Entities.runtimeconfig.dev.json
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\bin\Debug\netcoreapp2.2\Northwind.Entities.pdb
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\obj\Debug\netcoreapp2.2\Northwind.Entities.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Entities\obj\Debug\netcoreapp2.2\Northwind.Entities.pdb

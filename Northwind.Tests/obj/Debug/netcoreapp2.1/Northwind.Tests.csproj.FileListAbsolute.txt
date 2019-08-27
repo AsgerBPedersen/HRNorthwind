@@ -1,0 +1,14 @@
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\bin\Debug\netcoreapp2.1\Northwind.Tests.deps.json
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\bin\Debug\netcoreapp2.1\Northwind.Tests.runtimeconfig.json
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\bin\Debug\netcoreapp2.1\Northwind.Tests.runtimeconfig.dev.json
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\bin\Debug\netcoreapp2.1\Northwind.Tests.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\bin\Debug\netcoreapp2.1\Northwind.Tests.pdb
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\obj\Debug\netcoreapp2.1\Northwind.Tests.csprojAssemblyReference.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\obj\Debug\netcoreapp2.1\Northwind.Tests.csproj.CoreCompileInputs.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\obj\Debug\netcoreapp2.1\Northwind.Tests.AssemblyInfoInputs.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\obj\Debug\netcoreapp2.1\Northwind.Tests.AssemblyInfo.cs
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\obj\Debug\netcoreapp2.1\Northwind.Tests.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Tests\obj\Debug\netcoreapp2.1\Northwind.Tests.pdb
