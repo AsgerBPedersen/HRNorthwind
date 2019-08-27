@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj": {
-                "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj"
+              "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj": {
+                "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj"
               }
             }
           }
@@ -70,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj": {
+    "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj",
         "projectName": "Northwind.Entities",
-        "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj",
+        "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj",
         "packagesPath": "C:\\Users\\asge4899\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\obj\\",
+        "outputPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -107,6 +107,12 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "Bricelam.EntityFrameworkCore.Pluralizer": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[2.2.6, )"

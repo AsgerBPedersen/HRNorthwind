@@ -4721,6 +4721,20 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Northwind.DataAcess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
+          "Northwind.Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Northwind.DataAcess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Northwind.DataAcess.dll": {}
+        }
+      },
       "Northwind.Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -12938,10 +12952,15 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Northwind.DataAcess/1.0.0": {
+      "type": "project",
+      "path": "../Northwind.DataAcess/Northwind.DataAcess.csproj",
+      "msbuildProject": "../Northwind.DataAcess/Northwind.DataAcess.csproj"
+    },
     "Northwind.Entities/1.0.0": {
       "type": "project",
-      "path": "../Northwind.Entities/Northwind.Entities.csproj",
-      "msbuildProject": "../Northwind.Entities/Northwind.Entities.csproj"
+      "path": "../Northwind.entities/Northwind.Entities.csproj",
+      "msbuildProject": "../Northwind.entities/Northwind.Entities.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -12950,6 +12969,7 @@
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.3",
+      "Northwind.DataAcess >= 1.0.0",
       "Northwind.Entities >= 1.0.0"
     ]
   },
@@ -12983,8 +13003,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj": {
-              "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj"
+            "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj": {
+              "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj"
+            },
+            "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj": {
+              "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj"
             }
           }
         }

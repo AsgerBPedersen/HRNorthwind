@@ -18,7 +18,7 @@ namespace Northwind.Gui.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<NorthwindContext>();   
+            services.AddDbContext<NorthwindContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

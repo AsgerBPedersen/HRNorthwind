@@ -28,6 +28,7 @@
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3",
+          "Northwind.DataAcess": "1.0.0",
           "Northwind.Entities": "1.0.0"
         },
         "runtime": {
@@ -709,6 +710,18 @@
             "assemblyVersion": "4.1.1.0",
             "fileVersion": "4.6.26515.6"
           }
+        }
+      },
+      "Northwind.DataAcess/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
+          "Northwind.Entities": "1.0.0"
+        },
+        "runtime": {
+          "Northwind.DataAcess.dll": {}
+        },
+        "compile": {
+          "Northwind.DataAcess.dll": {}
         }
       },
       "Northwind.Entities/1.0.0": {
@@ -3899,6 +3912,11 @@
       "sha512": "sha512-S0wEUiKcLvRlkFUXca8uio1UQ5bYQzYgOmOKtCqaBQC3GR9AJjh43otcM32IGsAyvadFTaAMw9Irm6dS4Evfng==",
       "path": "system.text.encoding.codepages/4.5.0",
       "hashPath": "system.text.encoding.codepages.4.5.0.nupkg.sha512"
+    },
+    "Northwind.DataAcess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Northwind.Entities/1.0.0": {
       "type": "project",

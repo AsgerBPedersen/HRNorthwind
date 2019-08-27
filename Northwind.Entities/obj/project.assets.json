@@ -2,6 +2,21 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "Bricelam.EntityFrameworkCore.Pluralizer/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "2.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Bricelam.EntityFrameworkCore.Pluralizer.dll": {}
+        },
+        "build": {
+          "build/netstandard2.0/Bricelam.EntityFrameworkCore.Pluralizer.targets": {}
+        }
+      },
       "Microsoft.CSharp/4.5.0": {
         "type": "package",
         "compile": {
@@ -947,6 +962,20 @@
     }
   },
   "libraries": {
+    "Bricelam.EntityFrameworkCore.Pluralizer/1.0.0": {
+      "sha512": "akiz3hGnpDgZssTGTnTehy7cy8gJ3RME7jULOkxWHuoSUUmkyxHO8USA/DDTz9Zc+o3RvTdY888NrjDcmb3OJA==",
+      "type": "package",
+      "path": "bricelam.entityframeworkcore.pluralizer/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bricelam.entityframeworkcore.pluralizer.1.0.0.nupkg.sha512",
+        "bricelam.entityframeworkcore.pluralizer.nuspec",
+        "build/netstandard2.0/Bricelam.EntityFrameworkCore.Pluralizer.targets",
+        "lib/netstandard2.0/Bricelam.EntityFrameworkCore.Pluralizer.dll",
+        "lib/netstandard2.0/Bricelam.EntityFrameworkCore.Pluralizer.xml"
+      ]
+    },
     "Microsoft.CSharp/4.5.0": {
       "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
       "type": "package",
@@ -3607,6 +3636,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "Bricelam.EntityFrameworkCore.Pluralizer >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.2.6",
       "Microsoft.EntityFrameworkCore.Tools >= 2.2.6",
       "Microsoft.NETCore.App >= 2.2.0"
@@ -3619,11 +3649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj",
       "projectName": "Northwind.Entities",
-      "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj",
+      "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj",
       "packagesPath": "C:\\Users\\asge4899\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\obj\\",
+      "outputPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3653,6 +3683,12 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "Bricelam.EntityFrameworkCore.Pluralizer": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[2.2.6, )"
