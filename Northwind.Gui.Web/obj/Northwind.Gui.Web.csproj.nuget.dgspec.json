@@ -4,80 +4,14 @@
     "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Gui.Web\\Northwind.Gui.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj": {
+    "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj",
-        "projectName": "Northwind.DataAcess",
-        "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj",
-        "packagesPath": "C:\\Users\\asge4899\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\asge4899\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp2.2"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp2.2": {
-            "projectReferences": {
-              "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj": {
-                "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp2.2": {
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[2.2.6, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.6, )"
-            },
-            "Microsoft.NETCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
-            }
-          },
-          "imports": [
-            "net461"
-          ],
-          "assetTargetFallback": true,
-          "warn": true
-        }
-      }
-    },
-    "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj",
         "projectName": "Northwind.Entities",
-        "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj",
+        "projectPath": "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj",
         "packagesPath": "C:\\Users\\asge4899\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\obj\\",
+        "outputPath": "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -138,6 +72,72 @@
         }
       }
     },
+    "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj",
+        "projectName": "Northwind.DataAcess",
+        "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj",
+        "packagesPath": "C:\\Users\\asge4899\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\asge4899\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj": {
+                "projectPath": "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
     "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Gui.Web\\Northwind.Gui.Web.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -164,11 +164,11 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
+              "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj": {
+                "projectPath": "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj"
+              },
               "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj": {
                 "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.DataAcess\\Northwind.DataAcess.csproj"
-              },
-              "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj": {
-                "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.entities\\Northwind.Entities.csproj"
               }
             }
           }

@@ -24,6 +24,12 @@
             @Html.DisplayFor(model => model.Employee.FirstName)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.Initials)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.Initials)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Employee.Title)
         </dt>
         <dd class="col-sm-10">
@@ -42,10 +48,10 @@
             @Html.DisplayFor(model => model.Employee.BirthDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee.HireDate)
+            @Html.DisplayNameFor(model => model.Employee.Email)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Employee.HireDate)
+            @Html.DisplayFor(model => model.Employee.Email)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Employee.Address)
@@ -82,6 +88,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Employee.HomePhone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.WorkPhone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.WorkPhone)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Employee.Extension)

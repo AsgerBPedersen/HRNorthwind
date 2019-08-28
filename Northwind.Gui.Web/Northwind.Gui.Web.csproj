@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Northwind.Entities\Northwind.Entities\Northwind.Entities.csproj" />
     <ProjectReference Include="..\Northwind.DataAcess\Northwind.DataAcess.csproj" />
-    <ProjectReference Include="..\Northwind.entities\Northwind.Entities.csproj" />
   </ItemGroup>
 
 </Project>

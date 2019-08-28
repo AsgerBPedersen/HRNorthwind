@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Northwind.entities\Northwind.Entities.csproj" />
+    <ProjectReference Include="..\..\Northwind.Entities\Northwind.Entities\Northwind.Entities.csproj" />
   </ItemGroup>
 
 </Project>

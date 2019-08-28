@@ -6,71 +6,53 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Northwind.DataAcess;
 using Northwind.Entities.Models;
 
 namespace Northwind.Gui.Web.Pages.Employees
 {
     public class EditModel : PageModel
     {
-        private readonly Northwind.Entities.Models.NorthwindContext _context;
+        private readonly IEmployeeRepository _context;
 
-        public EditModel(Northwind.Entities.Models.NorthwindContext context)
+        public EditModel(IEmployeeRepository context)
         {
             _context = context;
         }
 
         [BindProperty]
         public Employee Employee { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        [BindProperty]
+        public List<Employment> Employments { get; set; }
+        public IActionResult OnGet(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Employee = await _context.Employees
-                .Include(e => e.ReportsToNavigation).FirstOrDefaultAsync(m => m.EmployeeId == id);
-
+            Employee = _context.GetEmployeeById((int)id);
+            Employments = Employee.Employments.ToList();
             if (Employee == null)
             {
                 return NotFound();
             }
-           ViewData["ReportsTo"] = new SelectList(_context.Employees, "EmployeeId", "FirstName");
+           ViewData["ReportsTo"] = new SelectList(_context.GetEmployees(), "EmployeeId", "FirstName");
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Employee).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EmployeeExists(Employee.EmployeeId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //_context.Attach(Employee).State = EntityState.Modified;
+            Employee.Employments = Employments;
+            _context.UpdateEmployee(Employee);
 
             return RedirectToPage("./Index");
-        }
-
-        private bool EmployeeExists(int id)
-        {
-            return _context.Employees.Any(e => e.EmployeeId == id);
         }
     }
 }

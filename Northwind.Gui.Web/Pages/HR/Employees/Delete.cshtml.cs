@@ -14,9 +14,9 @@ namespace Northwind.Gui.Web.Pages.Employees
     {
         private readonly IEmployeeRepository _context;
 
-        public DeleteModel()
+        public DeleteModel(IEmployeeRepository context)
         {
-            _context = new EmployeeRepository();
+            _context = context;
         }
 
         [BindProperty]

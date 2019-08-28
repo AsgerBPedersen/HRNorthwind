@@ -5,30 +5,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Northwind.DataAcess;
 using Northwind.Entities.Models;
 
 namespace Northwind.Gui.Web.Pages.Employees
 {
     public class DetailsModel : PageModel
     {
-        private readonly Northwind.Entities.Models.NorthwindContext _context;
+        private readonly IEmployeeRepository _context;
 
-        public DetailsModel(Northwind.Entities.Models.NorthwindContext context)
+        public DetailsModel(IEmployeeRepository context)
         {
             _context = context;
         }
 
         public Employee Employee { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Employee = await _context.Employees
-                .Include(e => e.ReportsToNavigation).FirstOrDefaultAsync(m => m.EmployeeId == id);
+            Employee = _context.GetEmployeeById((int)id);
 
             if (Employee == null)
             {

@@ -15,12 +15,13 @@ namespace Northwind.DataAcess
 
         Employee GetEmployeeByInitials(string initials);
 
+        void AddEmployee(Employee employee);
+
         void DeleteEmployee(Employee employee);
 
         void UpdateEmployee(Employee employee);
 
-        IList<Employee> GetEmployeesByCountryAndEmployment(string country, string title);
+        IList<Employee> GetEmployeesFiltered(string country, string title, string region, string firstName, string lastName);
 
-        IList<Employee> GetEmployeesByRegionAndEmployment(string region, string title);
     }
 }

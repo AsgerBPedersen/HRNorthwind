@@ -5,37 +5,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Northwind.DataAcess;
 using Northwind.Entities.Models;
 
 namespace Northwind.Gui.Web.Pages.Employees
 {
     public class CreateModel : PageModel
     {
-        private readonly Northwind.Entities.Models.NorthwindContext _context;
+        private readonly IEmployeeRepository _context;
 
-        public CreateModel(Northwind.Entities.Models.NorthwindContext context)
+        public CreateModel(IEmployeeRepository context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["ReportsTo"] = new SelectList(_context.Employees, "EmployeeId", "FirstName");
+            ViewData["ReportsTo"] = new SelectList(_context.GetEmployees(), "EmployeeId", "FirstName");
             return Page();
         }
 
         [BindProperty]
         public Employee Employee { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Employees.Add(Employee);
-            await _context.SaveChangesAsync();
+            _context.AddEmployee(Employee);
 
             return RedirectToPage("./Index");
         }

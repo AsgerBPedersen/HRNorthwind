@@ -31,7 +31,6 @@ C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Gui.Web\obj\Debug\netcoreap
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Gui.Web\obj\Debug\netcoreapp2.2\Razor\Pages\HR\Employees\Details.g.cshtml.cs
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Gui.Web\obj\Debug\netcoreapp2.2\Razor\Pages\HR\Employees\Edit.g.cshtml.cs
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Gui.Web\obj\Debug\netcoreapp2.2\Razor\Pages\HR\Employees\Index.g.cshtml.cs
-C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Gui.Web\obj\Debug\netcoreapp2.2\Razor\Pages\index.g.cshtml.cs
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Gui.Web\obj\Debug\netcoreapp2.2\Razor\Pages\HR\index.g.cshtml.cs
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Gui.Web\bin\Debug\netcoreapp2.2\Northwind.DataAcess.dll
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Gui.Web\bin\Debug\netcoreapp2.2\Northwind.DataAcess.pdb

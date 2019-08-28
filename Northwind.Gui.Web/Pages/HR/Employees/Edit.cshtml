@@ -26,6 +26,11 @@
                 <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Employee.Initials" class="control-label"></label>
+                <input asp-for="Employee.Initials" class="form-control" />
+                <span asp-validation-for="Employee.Initials" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Employee.Title" class="control-label"></label>
                 <input asp-for="Employee.Title" class="form-control" />
                 <span asp-validation-for="Employee.Title" class="text-danger"></span>
@@ -41,9 +46,9 @@
                 <span asp-validation-for="Employee.BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Employee.HireDate" class="control-label"></label>
-                <input asp-for="Employee.HireDate" class="form-control" />
-                <span asp-validation-for="Employee.HireDate" class="text-danger"></span>
+                <label asp-for="Employee.Email" class="control-label"></label>
+                <input asp-for="Employee.Email" class="form-control" />
+                <span asp-validation-for="Employee.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Employee.Address" class="control-label"></label>
@@ -76,6 +81,11 @@
                 <span asp-validation-for="Employee.HomePhone" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Employee.WorkPhone" class="control-label"></label>
+                <input asp-for="Employee.WorkPhone" class="form-control" />
+                <span asp-validation-for="Employee.WorkPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Employee.Extension" class="control-label"></label>
                 <input asp-for="Employee.Extension" class="form-control" />
                 <span asp-validation-for="Employee.Extension" class="text-danger"></span>
@@ -95,6 +105,30 @@
                 <input asp-for="Employee.PhotoPath" class="form-control" />
                 <span asp-validation-for="Employee.PhotoPath" class="text-danger"></span>
             </div>
+            <h3>Employments</h3>
+            @for (int i = 0; i < Model.Employments.Count; i++)
+            {
+                <div>
+                    <h4>@Model.Employments[i].HireDate.Value.Date.ToShortDateString() - @(Model.Employments[i].LeaveDate.HasValue ? Model.Employments[i].LeaveDate.Value.Date.ToShortDateString() : "")</h4>
+                    <input type="hidden" asp-for="@Model.Employments[i].EmployeeId" />
+                    <input type="hidden" asp-for="@Model.Employments[i].EmploymentId" />
+                    <div class="form-group">
+                        <label asp-for="@Model.Employments[i].Title" class="control-label"></label>
+                        <input asp-for="@Model.Employments[i].Title" class="form-control" />
+                        <span asp-validation-for="@Model.Employments[i].Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Employments[i].HireDate" class="control-label"></label>
+                        <input asp-for="@Model.Employments[i].HireDate" class="form-control" />
+                        <span asp-validation-for="@Model.Employments[i].HireDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employments[i].LeaveDate" class="control-label"></label>
+                        <input asp-for="Employments[i].LeaveDate" class="form-control" />
+                        <span asp-validation-for="Employments[i].LeaveDate" class="text-danger"></span>
+                    </div>
+                </div>
+            }
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
