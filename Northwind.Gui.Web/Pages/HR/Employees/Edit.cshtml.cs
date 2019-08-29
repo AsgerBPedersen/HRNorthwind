@@ -41,6 +41,26 @@ namespace Northwind.Gui.Web.Pages.Employees
             return Page();
         }
 
+        public IActionResult OnGetDelete(int? id, int? employmentId)
+        {
+            if (id == null && employmentId == null)
+            {
+                return NotFound();
+            }
+            _context.DeleteEmployment((int)id, (int)employmentId);
+            return RedirectToPage("/HR/Employees/edit", new { id = (int)id });
+        }
+
+        public IActionResult OnGetAddEmployment(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            _context.AddEmployment((int)id);
+            return RedirectToPage("/HR/Employees/edit", new { id = (int)id });
+        }
+
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)

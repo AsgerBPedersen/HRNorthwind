@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Northwind.Entities.Models
 {
@@ -15,6 +16,7 @@ namespace Northwind.Entities.Models
 
         public int EmployeeId { get; set; }
         public string LastName { get; set; }
+        [Required]
         public string FirstName { get; set; }
         public string Title { get; set; }
         public string TitleOfCourtesy { get; set; }
@@ -30,7 +32,9 @@ namespace Northwind.Entities.Models
         public string Notes { get; set; }
         public int? ReportsTo { get; set; }
         public string PhotoPath { get; set; }
+        [MaxLength(4, ErrorMessage = "Name length can't be more than 4.")]
         public string Initials { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         public string WorkPhone { get; set; }
 

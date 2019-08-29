@@ -68,15 +68,32 @@ namespace Northwind.DataAcess
                 .ToList();
         }
 
-        public IList<Employee> GetEmployeesFiltered(string country, string title, string region, string firstName, string lastName)
+        public IList<Employee> GetEmployeesFiltered(string country, string title, string region, string firstName, string lastName, string initials)
         {
-            return Db.Employees.Where(e => e.Country.IndexOf(country) != -1 && e.Title.IndexOf(title) != -1 && e.Region.IndexOf(region) != -1 && e.FirstName.IndexOf(firstName) != -1 && e.LastName.IndexOf(lastName) != -1).ToList();
+            return Db.Employees.Where(e => e.Country.IndexOf(country) != -1 && e.Title.IndexOf(title) != -1 && e.Region.IndexOf(region) != -1 && e.FirstName.IndexOf(firstName) != -1 && e.LastName.IndexOf(lastName) != -1 && e.Initials.IndexOf(initials) != -1).ToList();
         }
 
 
         public void UpdateEmployee(Employee employee)
         {
             Db.Employees.Update(employee);
+            Db.SaveChanges();
+        }
+
+        public void DeleteEmployment(int employeeId, int employmentId)
+        {
+            var employee = Db.Employees.Include(Employee => Employee.Employments).SingleOrDefault(e => e.EmployeeId == employeeId);
+            if (employee == null)
+            {
+                throw new NullReferenceException("Employee not found");
+            }
+            Db.Employments.Remove(employee.Employments.Single(e => e.EmploymentId == employmentId));
+            Db.SaveChanges();
+        }
+
+        public void AddEmployment(int id)
+        {
+            Db.Employees.SingleOrDefault(e => e.EmployeeId == id).Employments.Add(new Employment() { HireDate = DateTime.Now.Date });
             Db.SaveChanges();
         }
     }

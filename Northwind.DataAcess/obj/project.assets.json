@@ -3619,8 +3619,8 @@
     },
     "Northwind.Entities/1.0.0": {
       "type": "project",
-      "path": "../../Northwind.Entities/Northwind.Entities/Northwind.Entities.csproj",
-      "msbuildProject": "../../Northwind.Entities/Northwind.Entities/Northwind.Entities.csproj"
+      "path": "../Northwind.Entities/Northwind.Entities.csproj",
+      "msbuildProject": "../Northwind.Entities/Northwind.Entities.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3661,9 +3661,6 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj": {
-              "projectPath": "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj"
-            },
             "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj": {
               "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj"
             }

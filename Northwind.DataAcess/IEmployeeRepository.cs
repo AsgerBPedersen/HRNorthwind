@@ -21,7 +21,10 @@ namespace Northwind.DataAcess
 
         void UpdateEmployee(Employee employee);
 
-        IList<Employee> GetEmployeesFiltered(string country, string title, string region, string firstName, string lastName);
+        IList<Employee> GetEmployeesFiltered(string country, string title, string region, string firstName, string lastName, string initials);
 
+        void DeleteEmployment(int employeeId, int employmentId);
+
+        void AddEmployment(int id);
     }
 }
