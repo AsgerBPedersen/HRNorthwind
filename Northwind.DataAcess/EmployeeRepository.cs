@@ -47,7 +47,7 @@ namespace Northwind.DataAcess
         {
             return Db.Employees
                 .Include(r => r.ReportsToNavigation)
-                .Include(em => em.Employments)
+                .Include("Employments")
                 .SingleOrDefault(e => e.EmployeeId == id);
         }
 
@@ -64,7 +64,7 @@ namespace Northwind.DataAcess
         public IList<Employee> GetEmployees()
         {
             return Db.Employees
-                .Include(Employee => Employee.Employments)
+                .Include("Employments")
                 .ToList();
         }
 

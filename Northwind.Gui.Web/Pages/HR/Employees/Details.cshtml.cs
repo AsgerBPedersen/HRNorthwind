@@ -12,11 +12,11 @@ namespace Northwind.Gui.Web.Pages.Employees
 {
     public class DetailsModel : PageModel
     {
-        private readonly IEmployeeRepository _context;
+        private readonly IGenericRepository<Employee> _context;
 
-        public DetailsModel(IEmployeeRepository context)
+        public DetailsModel()
         {
-            _context = context;
+            _context = new GenericRepository<Employee>();
         }
 
         public Employee Employee { get; set; }
@@ -28,7 +28,7 @@ namespace Northwind.Gui.Web.Pages.Employees
                 return NotFound();
             }
 
-            Employee = _context.GetEmployeeById((int)id);
+            Employee = _context.GetById((int)id);
 
             if (Employee == null)
             {
