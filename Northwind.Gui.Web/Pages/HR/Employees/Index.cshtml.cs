@@ -31,7 +31,6 @@ namespace Northwind.Gui.Web.Pages.Employees
             ViewData["firstName"] = firstName;
             ViewData["lastName"] = lastName;
             Employee = _context.GetEmployeesFiltered(string.IsNullOrEmpty(country) ? "": country, string.IsNullOrEmpty(title) ? "" : title, string.IsNullOrEmpty(region) ? "" : region, string.IsNullOrEmpty(firstName) ? "" :firstName, string.IsNullOrEmpty(lastName) ? "" : lastName);
-           
         }
     }
 }

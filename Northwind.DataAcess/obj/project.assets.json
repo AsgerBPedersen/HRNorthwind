@@ -3663,6 +3663,9 @@
           "projectReferences": {
             "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj": {
               "projectPath": "C:\\Users\\asge4899\\source\\repos\\Northwind.Entities\\Northwind.Entities\\Northwind.Entities.csproj"
+            },
+            "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj": {
+              "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj"
             }
           }
         }
