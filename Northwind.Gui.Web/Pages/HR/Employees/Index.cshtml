@@ -2,29 +2,29 @@
 @model Northwind.Gui.Web.Pages.Employees.IndexModel
 
 @{
-    ViewData["Title"] = "Employees";
+    ViewData["Title"] = "HR - Ansatte";
 }
 
-<h1>Employees</h1>
+<h1>Ansatte</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Opret ny</a>
 </p>
 <div class="form-group">
     <form asp-action="Index" method="get">
-        <label>Country</label>
+        <label>Land</label>
         <input class="form-control" type="text" name="country" value="@ViewData["country"]" />
-        <label>Title</label>
+        <label>Stilling</label>
         <input class="form-control" type="text" name="title" value="@ViewData["employmentTitle"]" />
         <label>Region</label>
         <input class="form-control" type="text" name="region" value="@ViewData["region"]" />
-        <label>First name</label>
+        <label>Fornavn</label>
         <input class="form-control" type="text" name="firstName" value="@ViewData["firstName"]" />
-        <label>Last name</label>
+        <label>Efternavn</label>
         <input class="form-control" type="text" name="lastName" value="@ViewData["lastName"]" />
-        <label>Initials</label>
+        <label>Initialer</label>
         <input class="form-control" type="text" name="initials" value="@ViewData["initials"]" />
-        <input class="btn btn-secondary" type="submit" value="Search" />
+        <input class="btn btn-secondary mb-4 mt-4" type="submit" value="Søg" />
     </form>
 </div>
 <table class="table">
@@ -80,9 +80,9 @@
                 @Html.DisplayFor(modelItem => item.ReportsToNavigation.FirstName)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.EmployeeId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.EmployeeId">Rediger</a> |
+                <a asp-page="./Details" asp-route-id="@item.EmployeeId">Detaljer</a> |
+                <a asp-page="./Delete" asp-route-id="@item.EmployeeId">Slet</a>
             </td>
         </tr>
 }

@@ -16,6 +16,11 @@ namespace Northwind.DataAcess
             Db = new NorthwindContext();
         }
 
+        public EmployeeRepository(NorthwindContext nc)
+        {
+            Db = nc;
+        }
+
         public void AddEmployee(Employee employee)
         {
             Db.Employees.Add(employee);
@@ -93,7 +98,13 @@ namespace Northwind.DataAcess
 
         public void AddEmployment(int id)
         {
-            Db.Employees.SingleOrDefault(e => e.EmployeeId == id).Employments.Add(new Employment() { HireDate = DateTime.Now.Date });
+            var employee = Db.Employees.Include("Employments").SingleOrDefault(e => e.EmployeeId == id);
+            var newEmployment = new Employment() { HireDate = DateTime.Now.Date };
+            if (!employee.EmploymentValidation(newEmployment))
+            {
+                throw new ArgumentException("Employments can't overlap");
+            }
+            employee.Employments.Add(newEmployment);
             Db.SaveChanges();
         }
     }

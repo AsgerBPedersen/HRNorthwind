@@ -5,9 +5,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Rediger</h1>
 
-<h4>Employee</h4>
+<h4>Ansat</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -105,44 +105,41 @@
                 <input asp-for="Employee.PhotoPath" class="form-control" />
                 <span asp-validation-for="Employee.PhotoPath" class="text-danger"></span>
             </div>
-            <h3>Employments</h3>
-            <a class="btn btn-primary" asp-page-handler="AddEmployment" asp-route-id="@Model.Employee.EmployeeId">Add employments</a>
-            @for (int i = 0; i < Model.Employments.Count; i++)
+            <h3>Employments</h3> <span asp-validation-for="@Model.Employee.Employments" class="text-danger"></span>
+            <input type="submit" value="Opret ansættelse" class="btn btn-primary" asp-page-handler="AddEmployment" />
+            @for (int i = 0; i < Model.Employee.Employments.Count; i++)
             {
                 <div>
-                    <h4>@Model.Employments[i].HireDate.Value.Date.ToShortDateString() - @(Model.Employments[i].LeaveDate.HasValue ? Model.Employments[i].LeaveDate.Value.Date.ToShortDateString() : "")</h4>
-                    <input type="hidden" asp-for="@Model.Employments[i].EmployeeId" />
-                    <input type="hidden" asp-for="@Model.Employments[i].EmploymentId" />
+                    <h4>@Model.Employee.Employments[i].HireDate.Value.Date.ToShortDateString() - @(Model.Employee.Employments[i].LeaveDate.HasValue ? Model.Employee.Employments[i].LeaveDate.Value.Date.ToShortDateString() : "")</h4>
+                    <input type="hidden" asp-for="@Model.Employee.Employments[i].EmployeeId" />
+                    <input type="hidden" asp-for="@Model.Employee.Employments[i].EmploymentId" />
                     <div class="form-group">
-                        <label asp-for="@Model.Employments[i].Title" class="control-label"></label>
-                        <input asp-for="@Model.Employments[i].Title" class="form-control" />
-                        <span asp-validation-for="@Model.Employments[i].Title" class="text-danger"></span>
+                        <label asp-for="@Model.Employee.Employments[i].Title" class="control-label"></label>
+                        <input asp-for="@Model.Employee.Employments[i].Title" class="form-control" />
+                        <span asp-validation-for="@Model.Employee.Employments[i].Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="@Model.Employments[i].HireDate" class="control-label"></label>
-                        <input asp-for="@Model.Employments[i].HireDate" class="form-control" />
-                        <span asp-validation-for="@Model.Employments[i].HireDate" class="text-danger"></span>
+                        <label asp-for="@Model.Employee.Employments[i].HireDate" class="control-label"></label>
+                        <input asp-for="@Model.Employee.Employments[i].HireDate" class="form-control" />
+                        <span asp-validation-for="@Model.Employee.Employments[i].HireDate" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Employments[i].LeaveDate" class="control-label"></label>
-                        <input asp-for="Employments[i].LeaveDate" class="form-control" />
-                        <span asp-validation-for="Employments[i].LeaveDate" class="text-danger"></span>
+                        <label asp-for="Employee.Employments[i].LeaveDate" class="control-label"></label>
+                        <input asp-for="Employee.Employments[i].LeaveDate" class="form-control" />
+                        <span asp-validation-for="Employee.Employments[i].LeaveDate" class="text-danger"></span>
                     </div>
-                    <a class="btn btn-danger mb-4" asp-page-handler="Delete" asp-route-id="@Model.Employee.EmployeeId" asp-route-employmentId="@Model.Employments[i].EmploymentId">Delete</a>
+                    <a class="btn btn-danger mb-4" asp-page-handler="Delete" asp-route-id="@Model.Employee.EmployeeId" asp-route-employmentId="@Model.Employee.Employments[i].EmploymentId">Delete</a>
                 </div>
             }
             <hr />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Rediger" class="btn btn-primary" asp-page-handler="Edit" />
             </div>
         </form>
     </div>
 </div>
 
 <div class="mb-3">
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Tilbage til listen</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

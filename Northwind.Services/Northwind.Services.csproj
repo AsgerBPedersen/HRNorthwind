@@ -1,7 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Northwind.DataAcess\Northwind.DataAcess.csproj" />
+    <ProjectReference Include="..\Northwind.Entities\Northwind.Entities.csproj" />
+  </ItemGroup>
 
 </Project>

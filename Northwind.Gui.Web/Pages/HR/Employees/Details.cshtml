@@ -2,13 +2,13 @@
 @model Northwind.Gui.Web.Pages.Employees.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detaljer";
 }
 
-<h1>Details</h1>
+<h1>Detaljer</h1>
 
 <div>
-    <h4>Employee</h4>
+    <h4>Ansat</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -128,6 +128,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Employee.EmployeeId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Employee.EmployeeId">Rediger</a> |
+    <a asp-page="./Index">Tilbage til listen</a>
 </div>

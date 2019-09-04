@@ -7,3 +7,8 @@ C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Services\obj\Debug\netcorea
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Services\obj\Debug\netcoreapp2.2\Northwind.Services.dll
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Services\obj\Debug\netcoreapp2.2\Northwind.Services.pdb
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Services\obj\Debug\netcoreapp2.2\Northwind.Services.csprojAssemblyReference.cache
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Services\bin\Debug\netcoreapp2.2\Northwind.DataAcess.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Services\bin\Debug\netcoreapp2.2\Northwind.Entities.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Services\bin\Debug\netcoreapp2.2\Northwind.DataAcess.pdb
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Services\bin\Debug\netcoreapp2.2\Northwind.Entities.pdb
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.Services\obj\Debug\netcoreapp2.2\Northwind.Services.csproj.CopyComplete

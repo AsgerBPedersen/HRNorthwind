@@ -22,8 +22,6 @@ namespace Northwind.Gui.Web.Pages.Employees
 
         [BindProperty]
         public Employee Employee { get; set; }
-        [BindProperty]
-        public List<Employment> Employments { get; set; }
         public IActionResult OnGet(int? id)
         {
             if (id == null)
@@ -32,7 +30,6 @@ namespace Northwind.Gui.Web.Pages.Employees
             }
 
             Employee = _context.GetEmployeeById((int)id);
-            Employments = Employee.Employments.ToList();
             if (Employee == null)
             {
                 return NotFound();
@@ -51,25 +48,29 @@ namespace Northwind.Gui.Web.Pages.Employees
             return RedirectToPage("/HR/Employees/edit", new { id = (int)id });
         }
 
-        public IActionResult OnGetAddEmployment(int? id)
+        public IActionResult OnPostAddEmployment()
         {
-            if (id == null)
+            var newEmp = new Employment() { HireDate = DateTime.Now.Date };
+            Employee.Employments.Add(newEmp);
+            TryValidateModel(Employee);
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                Employee.Employments.Remove(newEmp);
+                return Page();
             }
-            _context.AddEmployment((int)id);
-            return RedirectToPage("/HR/Employees/edit", new { id = (int)id });
+
+            _context.UpdateEmployee(Employee);
+
+            return RedirectToPage("/HR/Employees/edit", new { id = Employee.EmployeeId });
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPostEdit()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            //_context.Attach(Employee).State = EntityState.Modified;
-            Employee.Employments = Employments;
             _context.UpdateEmployee(Employee);
 
             return RedirectToPage("./Index");

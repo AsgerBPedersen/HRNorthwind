@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -8,6 +9,7 @@ namespace Northwind.Entities.Models
     {
         public NorthwindContext()
         {
+            
         }
 
         public NorthwindContext(DbContextOptions<NorthwindContext> options)

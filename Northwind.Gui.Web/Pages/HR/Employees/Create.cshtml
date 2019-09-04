@@ -2,17 +2,19 @@
 @model Northwind.Gui.Web.Pages.Employees.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Opret";
 }
 
-<h1>Create</h1>
+<h1>Opret</h1>
 
-<h4>Employee</h4>
+<h4>Ansat</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Employee.EmployeeId" />
+            <input type="hidden" asp-for="Employee.Photo" />
             <div class="form-group">
                 <label asp-for="Employee.LastName" class="control-label"></label>
                 <input asp-for="Employee.LastName" class="form-control" />
@@ -22,6 +24,11 @@
                 <label asp-for="Employee.FirstName" class="control-label"></label>
                 <input asp-for="Employee.FirstName" class="form-control" />
                 <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.Initials" class="control-label"></label>
+                <input asp-for="Employee.Initials" class="form-control" />
+                <span asp-validation-for="Employee.Initials" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Employee.Title" class="control-label"></label>
@@ -37,6 +44,11 @@
                 <label asp-for="Employee.BirthDate" class="control-label"></label>
                 <input asp-for="Employee.BirthDate" class="form-control" />
                 <span asp-validation-for="Employee.BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.Email" class="control-label"></label>
+                <input asp-for="Employee.Email" class="form-control" />
+                <span asp-validation-for="Employee.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Employee.Address" class="control-label"></label>
@@ -69,14 +81,14 @@
                 <span asp-validation-for="Employee.HomePhone" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Employee.WorkPhone" class="control-label"></label>
+                <input asp-for="Employee.WorkPhone" class="form-control" />
+                <span asp-validation-for="Employee.WorkPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Employee.Extension" class="control-label"></label>
                 <input asp-for="Employee.Extension" class="form-control" />
                 <span asp-validation-for="Employee.Extension" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Employee.Photo" class="control-label"></label>
-                <input asp-for="Employee.Photo" class="form-control" />
-                <span asp-validation-for="Employee.Photo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Employee.Notes" class="control-label"></label>
@@ -85,7 +97,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Employee.ReportsTo" class="control-label"></label>
-                <select asp-for="Employee.ReportsTo" class ="form-control" asp-items="ViewBag.ReportsTo"></select>
+                <select asp-for="Employee.ReportsTo" class="form-control" asp-items="ViewBag.ReportsTo"><option value=""></option></select>
+                <span asp-validation-for="Employee.ReportsTo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Employee.PhotoPath" class="control-label"></label>
@@ -93,7 +106,7 @@
                 <span asp-validation-for="Employee.PhotoPath" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Opret" class="btn btn-primary" />
             </div>
         </form>
     </div>

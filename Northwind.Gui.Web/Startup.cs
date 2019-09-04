@@ -32,7 +32,9 @@ namespace Northwind.Gui.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseExceptionHandler("/Errors/Default");
             }
+            
             app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
         }
