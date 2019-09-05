@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Northwind.Entities.Models
 {
-    public partial class NorthwindContext : DbContext
+    public partial class NorthwindContext : DbContext, INorthwindContext
     {
         public NorthwindContext()
         {
-            
+
         }
 
         public NorthwindContext(DbContextOptions<NorthwindContext> options)

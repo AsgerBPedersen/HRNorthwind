@@ -58,7 +58,7 @@ namespace Northwind.DataAcess
 
         public Employee GetEmployeeByInitials(string initials)
         {
-            throw new NotImplementedException();
+            return Db.Employees.SingleOrDefault(e => e.Initials == initials);
         }
 
         public Employee GetEmployeeByName(string name)

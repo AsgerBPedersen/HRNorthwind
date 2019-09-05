@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Northwind.Entities.Models
 {
-    class ValidateDates : ValidationAttribute
+    public class ValidateDates : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
