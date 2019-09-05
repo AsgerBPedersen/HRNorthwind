@@ -18,12 +18,14 @@ namespace Northwind.Entities.Models
         }
 
         public int EmployeeId { get; set; }
-        [Required(ErrorMessage = "Du skal skrive et navn")]
         [DisplayName("Efternavn")]
+        [Required(ErrorMessage = "Du skal skrive et navn")]
+        [RegularExpression("[a-zA-ZÆØÅæøå ]+", ErrorMessage = "Navn kan ikke indeholde andet en bogstaver")]
         [MaxLength(20, ErrorMessage = "Efternavn kan ikke være længere end 4.")]
         public string LastName { get; set; }
-        [Required(ErrorMessage = "Du skal skrive et navn")]
         [DisplayName("Fornavn")]
+        [Required(ErrorMessage = "Du skal skrive et navn")]
+        [RegularExpression("[a-zA-ZÆØÅæøå ]+", ErrorMessage = "Navn kan ikke indeholde andet en bogstaver")]
         [MaxLength(10, ErrorMessage = "Fornavn kan ikke være længere end 10.")]
         public string FirstName { get; set; }
         [DisplayName("Stilling")]
@@ -36,23 +38,23 @@ namespace Northwind.Entities.Models
         [DisplayName("Adresse")]
         [MaxLength(60, ErrorMessage = "Addresse kan ikke være længere end 60.")]
         public string Address { get; set; }
-        [MaxLength(15, ErrorMessage = "By kan ikke være længere end 15.")]
         [DisplayName("By")]
+        [MaxLength(15, ErrorMessage = "By kan ikke være længere end 15.")]
         public string City { get; set; }
-        [MaxLength(15, ErrorMessage = "Region  kan ikke være længere end 15.")]
         [DisplayName("Region")]
+        [MaxLength(15, ErrorMessage = "Region  kan ikke være længere end 15.")]
         public string Region { get; set; }
-        [MaxLength(10, ErrorMessage = "Postnummer kan ikke være længere end 10.")]
         [DisplayName("Postnummer")]
+        [MaxLength(10, ErrorMessage = "Postnummer kan ikke være længere end 10.")]
         public string PostalCode { get; set; }
-        [MaxLength(15, ErrorMessage = "Land kan ikke være længere end 15.")]
         [DisplayName("Land")]
+        [MaxLength(15, ErrorMessage = "Land kan ikke være længere end 15.")]
         public string Country { get; set; }
-        [DisplayName("Hjemme telefon")]
         [MaxLength(24, ErrorMessage = "Nummer kan ikke være længere end 24.")]
+        [DisplayName("Hjemme telefon")]
         public string HomePhone { get; set; }
-        [MaxLength(4, ErrorMessage = "Område kode kan ikke være længere end 4.")]
         [DisplayName("Område kode")]
+        [MaxLength(4, ErrorMessage = "Område kode kan ikke være længere end 4.")]
         public string Extension { get; set; }
         [DisplayName("Foto")]
         public byte[] Photo { get; set; }
@@ -62,15 +64,15 @@ namespace Northwind.Entities.Models
         public int? ReportsTo { get; set; }
         [DisplayName("Foto sti")]
         public string PhotoPath { get; set; }
-        [MaxLength(4, ErrorMessage = "Initialer kan ikke være længere end 4.")]
         [DisplayName("Initialer")]
+        [MaxLength(4, ErrorMessage = "Initialer kan ikke være længere end 4.")]
         public string Initials { get; set; }
         [EmailAddress]
         public string Email { get; set; }
         [DisplayName("Arbejdstelefon")]
         [MaxLength(24, ErrorMessage = "Nummer kan ikke være længere end 24.")]
         public string WorkPhone { get; set; }
-
+        [DisplayName("Rapportere til")]
         public virtual Employee ReportsToNavigation { get; set; }
         public virtual ICollection<EmployeeTerritory> EmployeeTerritories { get; set; }
         [ValidateDates]
