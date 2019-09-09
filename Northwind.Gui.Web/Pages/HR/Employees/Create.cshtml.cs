@@ -12,9 +12,9 @@ namespace Northwind.Gui.Web.Pages.Employees
 {
     public class CreateModel : PageModel
     {
-        private readonly IEmployeeRepository _context;
+        private readonly IEmployeeService _context;
 
-        public CreateModel(IEmployeeRepository context)
+        public CreateModel(IEmployeeService context)
         {
             _context = context;
         }

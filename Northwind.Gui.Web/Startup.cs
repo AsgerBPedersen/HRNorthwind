@@ -24,7 +24,7 @@ namespace Northwind.Gui.Web
                 options.Conventions.AddPageRoute("/HR/Employees/Index", "");
             });
             //services.AddDbContext<NorthwindContext>();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

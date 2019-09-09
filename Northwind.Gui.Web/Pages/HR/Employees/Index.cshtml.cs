@@ -13,9 +13,9 @@ namespace Northwind.Gui.Web.Pages.Employees
 {
     public class IndexModel : PageModel
     {
-        private readonly IEmployeeRepository _context;
+        private readonly IEmployeeService _context;
 
-        public IndexModel(IEmployeeRepository context)
+        public IndexModel(IEmployeeService context)
         {
             _context = context;
         }
@@ -23,14 +23,14 @@ namespace Northwind.Gui.Web.Pages.Employees
         public IList<Employee> Employee { get;set; }
         
 
-        public void OnGet(string country, string title, string region, string firstName, string lastName, string initials)
+        public async Task OnGet(string country, string title, string region, string firstName, string lastName, string initials)
         {
             ViewData["country"] = country;
             ViewData["employmentTitle"] = title;
             ViewData["region"] = region;
             ViewData["firstName"] = firstName;
             ViewData["lastName"] = lastName;
-            Employee = _context.GetEmployeesFiltered(string.IsNullOrEmpty(country) ? "": country, string.IsNullOrEmpty(title) ? "" : title, string.IsNullOrEmpty(region) ? "" : region, string.IsNullOrEmpty(firstName) ? "" :firstName, string.IsNullOrEmpty(lastName) ? "" : lastName, string.IsNullOrEmpty(initials) ? "" : initials);
+            Employee = await _context.GetEmployeesFiltered(string.IsNullOrEmpty(country) ? "": country, string.IsNullOrEmpty(title) ? "" : title, string.IsNullOrEmpty(region) ? "" : region, string.IsNullOrEmpty(firstName) ? "" :firstName, string.IsNullOrEmpty(lastName) ? "" : lastName, string.IsNullOrEmpty(initials) ? "" : initials);
         }
     }
 }

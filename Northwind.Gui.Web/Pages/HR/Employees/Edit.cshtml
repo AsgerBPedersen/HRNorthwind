@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" asp-for="Employee.EmployeeId" />
             <input type="hidden" asp-for="Employee.Photo" />
             <div class="form-group">
@@ -92,7 +92,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Employee.Notes" class="control-label"></label>
-                <input asp-for="Employee.Notes" class="form-control" />
+                @Html.TextAreaFor(m => m.Employee.Notes, new { @class = "form-control" })
                 <span asp-validation-for="Employee.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -105,7 +105,8 @@
                 <input asp-for="Employee.PhotoPath" class="form-control" />
                 <span asp-validation-for="Employee.PhotoPath" class="text-danger"></span>
             </div>
-            <h3>Employments</h3> <span asp-validation-for="@Model.Employee.Employments" class="text-danger"></span>
+            <h3>Ansættelser</h3> <span asp-validation-for="@Model.Employee.Employments" class="text-danger"></span>
+            <hr />
             <input type="submit" value="Opret ansættelse" class="btn btn-primary" asp-page-handler="AddEmployment" />
             @for (int i = 0; i < Model.Employee.Employments.Count; i++)
             {

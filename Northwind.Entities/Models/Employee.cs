@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace Northwind.Entities.Models
 {
-    public partial class Employee
+    public partial class Employee : IEntityWithId
     {
 
         public Employee()
@@ -75,14 +75,16 @@ namespace Northwind.Entities.Models
         [DisplayName("Rapportere til")]
         public virtual Employee ReportsToNavigation { get; set; }
         public virtual ICollection<EmployeeTerritory> EmployeeTerritories { get; set; }
-        [ValidateDates]
+        [ValidateDates(ErrorMessage = "Datoer må ikke overlappe")]
         public virtual IList<Employment> Employments { get; set; }
         public virtual ICollection<Employee> InverseReportsToNavigation { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
 
+        public int Id => EmployeeId;
+
         public bool EmploymentValidation(Employment employment)
         {
-            if (Employments.SingleOrDefault(e => e.HireDate < employment.LeaveDate && employment.HireDate < e.LeaveDate || e.LeaveDate == null && employment.LeaveDate == null) != null)
+            if (Employments.SingleOrDefault(e => e.HireDate < (employment.LeaveDate == null ? DateTime.Now : employment.LeaveDate) && employment.HireDate < (e.LeaveDate == null ? DateTime.Now : e.LeaveDate) || e.LeaveDate == null && employment.LeaveDate == null) != null)
             {
                 return false;
             }

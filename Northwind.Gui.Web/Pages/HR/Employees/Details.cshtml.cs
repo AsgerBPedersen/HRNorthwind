@@ -12,11 +12,11 @@ namespace Northwind.Gui.Web.Pages.Employees
 {
     public class DetailsModel : PageModel
     {
-        private readonly IGenericRepository<Employee> _context;
+        private readonly IEmployeeService _context;
 
-        public DetailsModel()
+        public DetailsModel(IEmployeeService context)
         {
-            _context = new GenericRepository<Employee>();
+            _context = context;
         }
 
         public Employee Employee { get; set; }

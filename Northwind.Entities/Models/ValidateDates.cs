@@ -17,9 +17,9 @@ namespace Northwind.Entities.Models
                 {
                     if (e1 != e2)
                     {
-                        if (e1.HireDate < e2.LeaveDate && e2.HireDate < e1.LeaveDate || e1.LeaveDate == null && e2.LeaveDate == null)
+                        if (e1.HireDate < (e2.LeaveDate == null ? DateTime.Now : e2.LeaveDate) && e2.HireDate < (e1.LeaveDate == null ? DateTime.Now : e1.LeaveDate) || e1.LeaveDate == null && e2.LeaveDate == null)
                         {
-                            return new ValidationResult("Dates overlap");
+                            return new ValidationResult("Datoer må ikke overlappe");
                         }
                     }
                     

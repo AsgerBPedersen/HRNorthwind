@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Northwind.Entities.Models
 {
-    public partial class Region
+    public partial class Region : IEntityWithId
     {
         public Region()
         {
@@ -14,5 +14,7 @@ namespace Northwind.Entities.Models
         public string RegionDescription { get; set; }
 
         public virtual ICollection<Territory> Territories { get; set; }
+
+        public int Id => RegionId;
     }
 }

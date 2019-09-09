@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Northwind.Entities.Models
 {
-    public partial class Employment
+    public partial class Employment : IEntityWithId
     {
         public int EmploymentId { get; set; }
         public int EmployeeId { get; set; }
@@ -13,5 +13,7 @@ namespace Northwind.Entities.Models
         public DateTime? LeaveDate { get; set; }
 
         public virtual Employee Employee { get; set; }
+
+        public int Id => EmploymentId;
     }
 }

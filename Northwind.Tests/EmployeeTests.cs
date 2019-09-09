@@ -318,57 +318,89 @@ namespace Northwind.Tests
         [TestMethod]
         public void DeleteEmployment()
         {
-            //List<Employee> emp = new List<Employee>
-            //{
-            //    new Employee
-            //    {
-            //        EmployeeId = 1,
-            //        FirstName = "Asger",
-            //        LastName = "Pedersen",
-            //        Email = "123@asd.dk",
-            //        Employments = new List<Employment>
-            //    {
-            //        new Employment
-            //        {
-            //            EmployeeId = 1,
-            //            EmploymentId = 1,
-            //            HireDate = DateTime.Now.Date
-            //        }
-            //    }
-            //    }
-            //};
-
-            //// generates mock dbsets
-            //var mockEmployeeSet = GetQueryableMockDbSet(emp);
-            //var mockEmploymentSet = GetQueryableMockDbSet(new List<Employment> { emp.Single().Employments.Single() });
-
-            //// generates mock dbcontext and adds the relevant db sets.
-            //var mockContext = new Mock<NorthwindContext>();
-            //mockContext.Setup(c => c.Employees).Returns(mockEmployeeSet);
-            //mockContext.Setup(c => c.Employments).Returns(mockEmploymentSet);
-
-            ////initializes the repo with the mock context
-            //var repo = new EmployeeRepository(mockContext.Object);
+            var options = new DbContextOptionsBuilder<NorthwindContext>()
+            .UseInMemoryDatabase(databaseName: "Delete_employment_from_database")
+            .Options;
 
 
-            //int before = repo.GetEmployees().Single().Employments.Count;
-            //repo.DeleteEmployment(1, 1);
-            //int after = repo.GetEmployees().Single().Employments.Count;
-            //Assert.IsTrue(before == 1);
-            //Assert.IsTrue(after == 0);
+            Employee emp = new Employee()
+            {
+                EmployeeId = 1,
+                FirstName = "Asger",
+                LastName = "Pedersen",
+                Email = "123@asd.dk"
+            };
 
+            Employment employment = new Employment()
+            {
+                EmploymentId = 1,
+                EmployeeId = 1,
+                HireDate = DateTime.Now.Date
+            };
+
+            int before = 0;
+            // Run the test against one instance of the context
+            using (var context = new NorthwindContext(options))
+            {
+                var service = new EmployeeRepository(context);
+                service.AddEmployee(emp);
+                context.Employments.Add(employment);
+                context.SaveChanges();
+            }
+
+            using (var context = new NorthwindContext(options))
+            {
+                var service = new EmployeeRepository(context);
+                before = context.Employments.Count();
+                service.DeleteEmployment(1, 1);
+                context.SaveChanges();
+            }
+
+
+            // Use a separate instance of the context to verify correct data was deleted from database
+            using (var context = new NorthwindContext(options))
+            {
+                Assert.AreEqual(1, before);
+                Assert.AreEqual(0, context.Employments.Count());
+
+            }
         }
-        private static DbSet<T> GetQueryableMockDbSet<T>(List<T> sourceList) where T : class
+
+        [TestMethod]
+        public void AddEmployment()
         {
-            var queryable = sourceList.AsQueryable();
+            var options = new DbContextOptionsBuilder<NorthwindContext>()
+            .UseInMemoryDatabase(databaseName: "Add_employment_to_database")
+            .Options;
 
-            var dbSet = new Mock<DbSet<T>>();
-            dbSet.As<IQueryable<T>>().Setup(m => m.Provider).Returns(queryable.Provider);
-            dbSet.As<IQueryable<T>>().Setup(m => m.Expression).Returns(queryable.Expression);
-            dbSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(queryable.ElementType);
-            dbSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(() => queryable.GetEnumerator());
 
-            return dbSet.Object;
+            Employee emp = new Employee()
+            {
+                EmployeeId = 1,
+                FirstName = "Asger",
+                LastName = "Pedersen",
+                Email = "123@asd.dk"
+            };
+
+
+            // Run the test against one instance of the context
+            using (var context = new NorthwindContext(options))
+            {
+                var service = new EmployeeRepository(context);
+                service.AddEmployee(emp);
+                service.AddEmployment(1);
+                context.SaveChanges();
+            }
+
+
+
+            // Use a separate instance of the context to verify correct data was saved to database
+            using (var context = new NorthwindContext(options))
+            {
+                Assert.AreEqual(1, context.Employments.Count());
+                Assert.AreEqual(1, context.Employments.Single().EmploymentId);
+            }
         }
+
     }
 }

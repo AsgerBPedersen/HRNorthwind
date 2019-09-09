@@ -13,9 +13,9 @@ namespace Northwind.Gui.Web.Pages.Employees
 {
     public class EditModel : PageModel
     {
-        private readonly IEmployeeRepository _context;
+        private readonly IEmployeeService _context;
 
-        public EditModel(IEmployeeRepository context)
+        public EditModel(IEmployeeService context)
         {
             _context = context;
         }
@@ -29,7 +29,7 @@ namespace Northwind.Gui.Web.Pages.Employees
                 return NotFound();
             }
 
-            Employee = _context.GetEmployeeById((int)id);
+            Employee = _context.GetById((int)id);
             if (Employee == null)
             {
                 return NotFound();
@@ -55,6 +55,7 @@ namespace Northwind.Gui.Web.Pages.Employees
             TryValidateModel(Employee);
             if (!ModelState.IsValid)
             {
+                ViewData["ReportsTo"] = new SelectList(_context.GetEmployees(), "EmployeeId", "FirstName");
                 Employee.Employments.Remove(newEmp);
                 return Page();
             }
@@ -68,6 +69,7 @@ namespace Northwind.Gui.Web.Pages.Employees
         {
             if (!ModelState.IsValid)
             {
+                ViewData["ReportsTo"] = new SelectList(_context.GetEmployees(), "EmployeeId", "FirstName");
                 return Page();
             }
 

@@ -12,9 +12,9 @@ namespace Northwind.Gui.Web.Pages.Employees
 {
     public class DeleteModel : PageModel
     {
-        private readonly IEmployeeRepository _context;
+        private readonly IEmployeeService _context;
 
-        public DeleteModel(IEmployeeRepository context)
+        public DeleteModel(IEmployeeService context)
         {
             _context = context;
         }
@@ -29,7 +29,7 @@ namespace Northwind.Gui.Web.Pages.Employees
                 return NotFound();
             }
 
-            Employee = _context.GetEmployeeById((int)id);
+            Employee = _context.GetById((int)id);
 
             if (Employee == null)
             {
@@ -45,7 +45,7 @@ namespace Northwind.Gui.Web.Pages.Employees
                 return NotFound();
             }
 
-            Employee = _context.GetEmployeeById((int)id);
+            Employee = _context.GetById((int)id);
 
             if (Employee != null)
             {

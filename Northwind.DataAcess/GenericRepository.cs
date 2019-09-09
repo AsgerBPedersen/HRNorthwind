@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Northwind.DataAcess
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class, IEntityWithId
     {
         private readonly NorthwindContext _dbContext;
 
-        public GenericRepository()
+        public GenericRepository(NorthwindContext dbContext)
         {
-            _dbContext = new NorthwindContext();
+            _dbContext = dbContext;
         }
 
         public virtual T GetById(int id)
@@ -22,22 +23,34 @@ namespace Northwind.DataAcess
             return _dbContext.Set<T>().Find(id);
         }
 
-        public virtual IEnumerable<T> List()
+        public virtual T GetById(int id, string children)
         {
-            return _dbContext.Set<T>().AsEnumerable();
+            return _dbContext.Set<T>().Include(children).SingleOrDefault(t => t.Id == id);
+        }
+        public async Task<IEnumerable<T>> List()
+        {
+            return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public virtual IEnumerable<T> List(Expression<Func<T, bool>> predicate)
+
+
+        public virtual IEnumerable<T> List(string children)
         {
-            return _dbContext.Set<T>()
+
+            return _dbContext.Set<T>().Include(children);
+
+        }
+        public async Task<IList<T>> List(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbContext.Set<T>()
                    .Where(predicate)
-                   .AsEnumerable();
+                   .ToListAsync();
         }
 
-        public IEnumerable<T> QueryObjectGraph(Expression<Func<T, bool>> filter, string children)
+        public async Task<IList<T>> List(Expression<Func<T, bool>> filter, string children)
         {
 
-            return _dbContext.Set<T>().Include(children).Where(filter);
+            return await _dbContext.Set<T>().Include(children).Where(filter).ToListAsync();
 
         }
         public void Add(T entity)
@@ -57,5 +70,13 @@ namespace Northwind.DataAcess
             _dbContext.Set<T>().Remove(entity);
             _dbContext.SaveChanges();
         }
+
+        public void DeleteRange(IEnumerable<T> Entities)
+        {
+            _dbContext.Set<T>().RemoveRange(Entities);
+            _dbContext.SaveChanges();
+        }
+
+        
     }
 }
