@@ -61,7 +61,7 @@ namespace Northwind.DataAcess
 
         public void Edit(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Set<T>().Update(entity);
             _dbContext.SaveChanges();
         }
 

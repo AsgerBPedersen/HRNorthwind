@@ -29,7 +29,8 @@
           "Microsoft.NETCore.App": "2.2.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3",
           "Northwind.DataAcess": "1.0.0",
-          "Northwind.Entities": "1.0.0"
+          "Northwind.Entities": "1.0.0",
+          "Northwind.WebServices": "1.0.0"
         },
         "runtime": {
           "Northwind.Gui.Web.dll": {}
@@ -755,13 +756,22 @@
       "Northwind.Entities/1.0.0": {
         "dependencies": {
           "Microsoft.Data.Sqlite.Core": "2.2.6",
-          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6"
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
+          "Northwind.WebServices": "1.0.0"
         },
         "runtime": {
           "Northwind.Entities.dll": {}
         },
         "compile": {
           "Northwind.Entities.dll": {}
+        }
+      },
+      "Northwind.WebServices/1.0.0": {
+        "runtime": {
+          "Northwind.WebServices.dll": {}
+        },
+        "compile": {
+          "Northwind.WebServices.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3962,6 +3972,11 @@
       "sha512": ""
     },
     "Northwind.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Northwind.WebServices/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

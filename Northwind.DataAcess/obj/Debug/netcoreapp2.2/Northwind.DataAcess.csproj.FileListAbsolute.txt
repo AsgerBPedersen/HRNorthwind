@@ -12,3 +12,7 @@ C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcore
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.Entities.dll
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.Entities.pdb
 C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\obj\Debug\netcoreapp2.2\Northwind.DataAcess.csproj.CopyComplete
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.WebServices.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Newtonsoft.Json.dll
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Northwind.WebServices.pdb
+C:\Users\asge4899\source\repos\NorthwindHR\Northwind.DataAcess\bin\Debug\netcoreapp2.2\Newtonsoft.Json.xml

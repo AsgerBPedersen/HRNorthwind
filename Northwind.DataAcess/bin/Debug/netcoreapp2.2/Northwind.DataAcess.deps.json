@@ -542,10 +542,27 @@
       "Northwind.Entities/1.0.0": {
         "dependencies": {
           "Microsoft.Data.Sqlite.Core": "2.2.6",
-          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6"
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
+          "Northwind.WebServices": "1.0.0"
         },
         "runtime": {
           "Northwind.Entities.dll": {}
+        }
+      },
+      "Northwind.WebServices/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.0.0"
+        },
+        "runtime": {
+          "Northwind.WebServices.dll": {}
+        }
+      },
+      "Newtonsoft.Json.Reference/9.0.0.0": {
+        "runtime": {
+          "Newtonsoft.Json.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.1.19813"
+          }
         }
       }
     }
@@ -964,6 +981,16 @@
     },
     "Northwind.Entities/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Northwind.WebServices/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json.Reference/9.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

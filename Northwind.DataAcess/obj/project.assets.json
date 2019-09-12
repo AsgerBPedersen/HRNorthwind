@@ -973,13 +973,24 @@
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
           "Microsoft.Data.Sqlite.Core": "2.2.6",
-          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6"
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
+          "Northwind.WebServices": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Northwind.Entities.dll": {}
         },
         "runtime": {
           "bin/placeholder/Northwind.Entities.dll": {}
+        }
+      },
+      "Northwind.WebServices/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Northwind.WebServices.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Northwind.WebServices.dll": {}
         }
       }
     }
@@ -3685,6 +3696,11 @@
       "type": "project",
       "path": "../Northwind.Entities/Northwind.Entities.csproj",
       "msbuildProject": "../Northwind.Entities/Northwind.Entities.csproj"
+    },
+    "Northwind.WebServices/1.0.0": {
+      "type": "project",
+      "path": "../Northwind.WebServices/Northwind.WebServices.csproj",
+      "msbuildProject": "../Northwind.WebServices/Northwind.WebServices.csproj"
     }
   },
   "projectFileDependencyGroups": {

@@ -4764,13 +4764,24 @@
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
           "Microsoft.Data.Sqlite.Core": "2.2.6",
-          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6"
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
+          "Northwind.WebServices": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Northwind.Entities.dll": {}
         },
         "runtime": {
           "bin/placeholder/Northwind.Entities.dll": {}
+        }
+      },
+      "Northwind.WebServices/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Northwind.WebServices.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Northwind.WebServices.dll": {}
         }
       }
     }
@@ -13025,6 +13036,11 @@
       "type": "project",
       "path": "../Northwind.Entities/Northwind.Entities.csproj",
       "msbuildProject": "../Northwind.Entities/Northwind.Entities.csproj"
+    },
+    "Northwind.WebServices/1.0.0": {
+      "type": "project",
+      "path": "../Northwind.WebServices/Northwind.WebServices.csproj",
+      "msbuildProject": "../Northwind.WebServices/Northwind.WebServices.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -13034,7 +13050,8 @@
       "Microsoft.NETCore.App >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.3",
       "Northwind.DataAcess >= 1.0.0",
-      "Northwind.Entities >= 1.0.0"
+      "Northwind.Entities >= 1.0.0",
+      "Northwind.WebServices >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -13072,6 +13089,9 @@
             },
             "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj": {
               "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.Entities\\Northwind.Entities.csproj"
+            },
+            "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.WebServices\\Northwind.WebServices.csproj": {
+              "projectPath": "C:\\Users\\asge4899\\source\\repos\\NorthwindHR\\Northwind.WebServices\\Northwind.WebServices.csproj"
             }
           }
         }

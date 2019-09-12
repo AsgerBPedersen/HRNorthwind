@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Northwind.DataAcess;
 using Northwind.Entities.Models;
+using Northwind.WebServices;
 
 namespace Northwind.Gui.Web.Pages.Employees
 {
@@ -19,14 +20,13 @@ namespace Northwind.Gui.Web.Pages.Employees
             _context = context;
         }
 
+        [BindProperty]
+        public Employee Employee { get; set; }
         public IActionResult OnGet()
         {
             ViewData["ReportsTo"] = new SelectList(_context.GetEmployees(), "EmployeeId", "FirstName");
             return Page();
         }
-
-        [BindProperty]
-        public Employee Employee { get; set; }
 
         public IActionResult OnPost()
         {

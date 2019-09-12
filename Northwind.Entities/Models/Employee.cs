@@ -59,6 +59,7 @@ namespace Northwind.Entities.Models
         [DisplayName("Foto")]
         public byte[] Photo { get; set; }
         [DisplayName("Noter")]
+        [ValidateProfanity]
         public string Notes { get; set; }
         [DisplayName("Raportere til")]
         public int? ReportsTo { get; set; }
@@ -67,7 +68,7 @@ namespace Northwind.Entities.Models
         [DisplayName("Initialer")]
         [MaxLength(4, ErrorMessage = "Initialer kan ikke være længere end 4.")]
         public string Initials { get; set; }
-        [EmailAddress]
+        [ValidateEmail]
         public string Email { get; set; }
         [DisplayName("Arbejdstelefon")]
         [MaxLength(24, ErrorMessage = "Nummer kan ikke være længere end 24.")]
