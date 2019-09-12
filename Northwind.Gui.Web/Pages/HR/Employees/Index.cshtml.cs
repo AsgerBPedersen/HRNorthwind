@@ -23,7 +23,7 @@ namespace Northwind.Gui.Web.Pages.Employees
         public IList<Employee> Employee { get;set; }
         
 
-        public async Task OnGet(string country, string title, string region, string firstName, string lastName, string initials)
+        public async Task OnGetAsync(string country, string title, string region, string firstName, string lastName, string initials)
         {
             ViewData["country"] = country;
             ViewData["employmentTitle"] = title;

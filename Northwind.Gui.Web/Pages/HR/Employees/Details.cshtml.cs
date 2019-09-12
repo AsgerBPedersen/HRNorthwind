@@ -21,14 +21,14 @@ namespace Northwind.Gui.Web.Pages.Employees
 
         public Employee Employee { get; set; }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Employee = _context.GetById((int)id);
+            Employee = await _context.GetById((int)id);
 
             if (Employee == null)
             {

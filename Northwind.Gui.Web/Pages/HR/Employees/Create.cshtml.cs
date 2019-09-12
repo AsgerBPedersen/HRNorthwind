@@ -22,20 +22,20 @@ namespace Northwind.Gui.Web.Pages.Employees
 
         [BindProperty]
         public Employee Employee { get; set; }
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-            ViewData["ReportsTo"] = new SelectList(_context.GetEmployees(), "EmployeeId", "FirstName");
+            ViewData["ReportsTo"] = new SelectList(await _context.GetEmployees(), "EmployeeId", "FirstName");
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.AddEmployee(Employee);
+            await _context.AddEmployee(Employee);
 
             return RedirectToPage("./Index");
         }

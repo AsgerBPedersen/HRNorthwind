@@ -22,14 +22,14 @@ namespace Northwind.Gui.Web.Pages.Employees
         [BindProperty]
         public Employee Employee { get; set; }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Employee = _context.GetById((int)id);
+            Employee = await _context.GetById((int)id);
 
             if (Employee == null)
             {
@@ -38,14 +38,14 @@ namespace Northwind.Gui.Web.Pages.Employees
             return Page();
         }
 
-        public IActionResult OnPost(int? id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Employee = _context.GetById((int)id);
+            Employee = await _context.GetById((int)id);
 
             if (Employee != null)
             {

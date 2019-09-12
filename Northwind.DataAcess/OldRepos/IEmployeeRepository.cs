@@ -11,9 +11,6 @@ namespace Northwind.DataAcess
 
         Employee GetEmployeeById(int id);
 
-        Employee GetEmployeeByName(string name);
-
-        Employee GetEmployeeByInitials(string initials);
 
         void AddEmployee(Employee employee);
 

@@ -18,27 +18,25 @@ namespace Northwind.DataAcess
             _dbContext = dbContext;
         }
 
-        public virtual T GetById(int id)
+        public virtual async Task<T> GetById(int id)
         {
-            return _dbContext.Set<T>().Find(id);
+            return await _dbContext.Set<T>().FindAsync(id);
         }
 
-        public virtual T GetById(int id, string children)
+        public virtual async Task<T> GetById(int id, string children)
         {
-            return _dbContext.Set<T>().Include(children).SingleOrDefault(t => t.Id == id);
+            return await _dbContext.Set<T>().Include(children).SingleOrDefaultAsync(t => t.Id == id);
         }
-        public async Task<IEnumerable<T>> List()
+        public async Task<IList<T>> List()
         {
             return await _dbContext.Set<T>().ToListAsync();
         }
 
 
 
-        public virtual IEnumerable<T> List(string children)
+        public virtual async Task<IList<T>> List(string children)
         {
-
-            return _dbContext.Set<T>().Include(children);
-
+            return await _dbContext.Set<T>().Include(children).ToListAsync();    
         }
         public async Task<IList<T>> List(Expression<Func<T, bool>> predicate)
         {
@@ -53,28 +51,28 @@ namespace Northwind.DataAcess
             return await _dbContext.Set<T>().Include(children).Where(filter).ToListAsync();
 
         }
-        public void Add(T entity)
+        public async Task<int> Add(T entity)
         {
             _dbContext.Set<T>().Add(entity);
-            _dbContext.SaveChanges();
+            return await _dbContext.SaveChangesAsync();
         }
 
-        public void Edit(T entity)
+        public async Task<int> Edit(T entity)
         {
             _dbContext.Set<T>().Update(entity);
-            _dbContext.SaveChanges();
+            return await _dbContext.SaveChangesAsync();
         }
 
-        public void Delete(T entity)
+        public async Task<int> Delete(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
-            _dbContext.SaveChanges();
+            return await _dbContext.SaveChangesAsync();
         }
 
-        public void DeleteRange(IEnumerable<T> Entities)
+        public async Task<int> DeleteRange(IEnumerable<T> Entities)
         {
             _dbContext.Set<T>().RemoveRange(Entities);
-            _dbContext.SaveChanges();
+            return await _dbContext.SaveChangesAsync();
         }
 
         

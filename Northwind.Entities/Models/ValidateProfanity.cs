@@ -11,6 +11,10 @@ namespace Northwind.Entities.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             Employee model = (Employee)validationContext.ObjectInstance;
+            if (string.IsNullOrEmpty(model.Notes))
+            {
+                return ValidationResult.Success;
+            }
             var res = EmployeeValidator.ValidateProfanity(model.Notes);
             if (!res.isValid)
             {

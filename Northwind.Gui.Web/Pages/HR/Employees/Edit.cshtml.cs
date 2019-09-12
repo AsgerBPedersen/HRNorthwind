@@ -22,58 +22,58 @@ namespace Northwind.Gui.Web.Pages.Employees
 
         [BindProperty]
         public Employee Employee { get; set; }
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Employee = _context.GetById((int)id);
+            Employee = await _context.GetById((int)id);
             if (Employee == null)
             {
                 return NotFound();
             }
-           ViewData["ReportsTo"] = new SelectList(_context.GetEmployees(), "EmployeeId", "FirstName");
+           ViewData["ReportsTo"] = new SelectList(await _context.GetEmployees(), "EmployeeId", "FirstName");
             return Page();
         }
 
-        public IActionResult OnGetDelete(int? id, int? employmentId)
+        public async Task<IActionResult> OnGetDeleteAsync(int? id, int? employmentId)
         {
             if (id == null && employmentId == null)
             {
                 return NotFound();
             }
-            _context.DeleteEmployment((int)id, (int)employmentId);
+            await _context.DeleteEmployment((int)id, (int)employmentId);
             return RedirectToPage("/HR/Employees/edit", new { id = (int)id });
         }
 
-        public IActionResult OnPostAddEmployment()
+        public async Task<IActionResult> OnPostAddEmploymentAsync()
         {
             var newEmp = new Employment() { HireDate = DateTime.Now.Date };
             Employee.Employments.Add(newEmp);
             TryValidateModel(Employee);
             if (!ModelState.IsValid)
             {
-                ViewData["ReportsTo"] = new SelectList(_context.GetEmployees(), "EmployeeId", "FirstName");
+                ViewData["ReportsTo"] = new SelectList(await _context.GetEmployees(), "EmployeeId", "FirstName");
                 Employee.Employments.Remove(newEmp);
                 return Page();
             }
 
-            _context.UpdateEmployee(Employee);
+            await _context.UpdateEmployee(Employee);
 
             return RedirectToPage("/HR/Employees/edit", new { id = Employee.EmployeeId });
         }
 
-        public IActionResult OnPostEdit()
+        public async Task<IActionResult> OnPostEditAsync()
         {
             if (!ModelState.IsValid)
             {
-                ViewData["ReportsTo"] = new SelectList(_context.GetEmployees(), "EmployeeId", "FirstName");
+                ViewData["ReportsTo"] = new SelectList(await _context.GetEmployees(), "EmployeeId", "FirstName");
                 return Page();
             }
 
-            _context.UpdateEmployee(Employee);
+            await _context.UpdateEmployee(Employee);
 
             return RedirectToPage("./Index");
         }

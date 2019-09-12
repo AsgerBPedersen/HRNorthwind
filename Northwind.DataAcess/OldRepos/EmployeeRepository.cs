@@ -100,10 +100,6 @@ namespace Northwind.DataAcess
         {
             var employee = Db.Employees.Include("Employments").SingleOrDefault(e => e.EmployeeId == id);
             var newEmployment = new Employment() { HireDate = DateTime.Now.Date };
-            if (!employee.EmploymentValidation(newEmployment))
-            {
-                throw new ArgumentException("Employments can't overlap");
-            }
             employee.Employments.Add(newEmployment);
             Db.SaveChanges();
         }

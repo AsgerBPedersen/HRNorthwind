@@ -36,9 +36,9 @@ namespace Northwind.DataAcess
             _orderDetails = orderDetails;
         }
 
-        public void AddEmployee(Employee employee)
+        public async Task<int> AddEmployee(Employee employee)
         {
-            _employees.Add(employee);
+           return await _employees.Add(employee);
         }
 
 
@@ -52,35 +52,26 @@ namespace Northwind.DataAcess
             foreach (var item in orders)
             {
                 var orderdetails = await _orderDetails.List(o => o.OrderId == item.OrderId);
-                _orderDetails.DeleteRange(orderdetails);
+                await _orderDetails.DeleteRange(orderdetails);
             }
 
 
-            _orders.DeleteRange(orders);
-            _teritories.DeleteRange(teritories);
-            _employments.DeleteRange(employments);
-            _employees.Delete(employee);
+            await _orders.DeleteRange(orders);
+            await _teritories.DeleteRange(teritories);
+            await _employments.DeleteRange(employments);
+            await _employees.Delete(employee);
         }
 
 
-        public Employee GetById(int id)
+        public async Task<Employee> GetById(int id)
         {
-            return _employees.GetById(id, "Employments");
+            return await _employees.GetById(id, "Employments");
         }
 
-        public Employee GetEmployeeByInitials(string initials)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Employee GetEmployeeByName(string name)
+        public async Task<IList<Employee>> GetEmployees()
         {
-            throw new NotImplementedException();
-        }
-
-        public IList<Employee> GetEmployees()
-        {
-            return _employees.List("Employments").ToList();
+            return await _employees.List("Employments");
         }
 
         public async Task<IList<Employee>> GetEmployeesFiltered(string country, string title, string region, string firstName, string lastName, string initials)
@@ -88,28 +79,25 @@ namespace Northwind.DataAcess
             return await _employees.List(e => e.Country.IndexOf(country) != -1 && e.Title.IndexOf(title) != -1 && e.Region.IndexOf(region) != -1 && e.FirstName.IndexOf(firstName) != -1 && e.LastName.IndexOf(lastName) != -1 && e.Initials.IndexOf(initials) != -1);
         }
 
-        public void UpdateEmployee(Employee employee)
+        public async Task<int> UpdateEmployee(Employee employee)
         {
-            _employees.Edit(employee);
+           return await _employees.Edit(employee);
         }
-        public void DeleteEmployment(int employeeId, int employmentId)
+        public async Task<int> DeleteEmployment(int employeeId, int employmentId)
         {
-            var employee = _employees.List("Employments").SingleOrDefault(e => e.EmployeeId == employeeId);
+            var employees = await _employees.List("Employments");
+            var employee = employees.SingleOrDefault(e => e.EmployeeId == employeeId);
             if (employee == null)
             {
                 throw new NullReferenceException("Employee not found");
             }
-            _employments.Delete(employee.Employments.Single(e => e.EmploymentId == employmentId));
+            return await _employments.Delete(employee.Employments.Single(e => e.EmploymentId == employmentId));
         }
-        public void AddEmployment(int id)
+        public async Task<int> AddEmployment(int id)
         {
-            var employee = _employees.GetById(id, "Employments");
+            var employee = await _employees.GetById(id, "Employments");
             var newEmployment = new Employment() { HireDate = DateTime.Now.Date, EmployeeId = employee.EmployeeId };
-            if (!employee.EmploymentValidation(newEmployment))
-            {
-                throw new ArgumentException("Employments can't overlap");
-            }
-            _employments.Add(newEmployment);
+            return await _employments.Add(newEmployment);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Northwind.Entities.Models
 {
     public partial class Employee : IEntityWithId
     {
+        private IList<Employment> employments;
 
         public Employee()
         {
@@ -77,19 +78,40 @@ namespace Northwind.Entities.Models
         public virtual Employee ReportsToNavigation { get; set; }
         public virtual ICollection<EmployeeTerritory> EmployeeTerritories { get; set; }
         [ValidateDates(ErrorMessage = "Datoer må ikke overlappe")]
-        public virtual IList<Employment> Employments { get; set; }
+        public virtual IList<Employment> Employments {
+            get => employments;
+            set {
+                var res = EmploymentsValidation(value);
+                if (!res.isValid)
+                {
+                    throw new ArgumentException(res.message);
+                }
+                employments = value;
+            }
+        }
         public virtual ICollection<Employee> InverseReportsToNavigation { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
 
         public int Id => EmployeeId;
 
-        public bool EmploymentValidation(Employment employment)
+        public static (bool isValid, string message) EmploymentsValidation(IList<Employment> employments)
         {
-            if (Employments.SingleOrDefault(e => e.HireDate < (employment.LeaveDate == null ? DateTime.Now : employment.LeaveDate) && employment.HireDate < (e.LeaveDate == null ? DateTime.Now : e.LeaveDate) || e.LeaveDate == null && employment.LeaveDate == null) != null)
+
+            foreach (var e1 in employments)
             {
-                return false;
+                foreach (var e2 in employments)
+                {
+                    if (e1 != e2)
+                    {
+                        if (e1.HireDate < (e2.LeaveDate == null ? DateTime.Now : e2.LeaveDate) && e2.HireDate < (e1.LeaveDate == null ? DateTime.Now : e1.LeaveDate) || e1.LeaveDate == null && e2.LeaveDate == null)
+                        {
+                            return (false, $"Ansættelser overlapper: {e1.HireDate} - {e1.LeaveDate} overlapper {e2.HireDate} - {e2.LeaveDate}");
+                        }
+                    }
+
+                }
             }
-            return true;
+            return (true, string.Empty);
         }
     }
 }

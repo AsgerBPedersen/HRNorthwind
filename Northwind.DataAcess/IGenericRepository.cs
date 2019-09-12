@@ -9,17 +9,17 @@ namespace Northwind.DataAcess
 {
     public interface IGenericRepository<T>
     {
-        T GetById(int id);
+        Task<T> GetById(int id);
 
-        T GetById(int id, string children);
-        Task<IEnumerable<T>> List();
-        IEnumerable<T> List(string children);
+        Task<T> GetById(int id, string children);
+        Task<IList<T>> List();
+        Task<IList<T>> List(string children);
         Task<IList<T>> List(Expression<Func<T, bool>> predicate);
         Task<IList<T>> List(Expression<Func<T, bool>> filter, string children);
-        void Add(T entity);
-        void Delete(T entity);
-        void Edit(T entity);
-        void DeleteRange(IEnumerable<T> Entities);
+        Task<int> Add(T entity);
+        Task<int> Delete(T entity);
+        Task<int> Edit(T entity);
+        Task<int> DeleteRange(IEnumerable<T> Entities);
     }
 
 }
