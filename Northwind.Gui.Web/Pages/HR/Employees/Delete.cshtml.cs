@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Northwind.DataAcess;
 using Northwind.Entities.Models;
 
@@ -49,7 +48,7 @@ namespace Northwind.Gui.Web.Pages.Employees
 
             if (Employee != null)
             {
-                _context.DeleteEmployee(Employee);
+               await _context.DeleteEmployee(Employee);
             }
 
             return RedirectToPage("./Index");

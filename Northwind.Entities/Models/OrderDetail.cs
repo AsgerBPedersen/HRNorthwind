@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Northwind.Entities.Models
 {
-    public partial class OrderDetail : IEntityWithId
+    public partial class OrderDetail : IEntityWithId 
     {
         public int OrderId { get; set; }
         public int ProductId { get; set; }

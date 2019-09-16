@@ -8,7 +8,6 @@ namespace Northwind.Entities.Models
         public int EmploymentId { get; set; }
         public int EmployeeId { get; set; }
         public string Title { get; set; }
-        [ValidateDate]
         public DateTime? HireDate { get; set; }
         public DateTime? LeaveDate { get; set; }
 

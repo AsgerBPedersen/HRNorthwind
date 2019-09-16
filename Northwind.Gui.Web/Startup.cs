@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Northwind.DataAcess;
 using Northwind.Entities.Models;
@@ -22,20 +21,21 @@ namespace Northwind.Gui.Web
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/HR/Employees/Index", "");
+            }).AddMvcOptions(options => {
+                options.EnableEndpointRouting = false;
             });
             //services.AddDbContext<NorthwindContext>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+           
+               app.UseDeveloperExceptionPage();
                 //app.UseExceptionHandler("/Errors/Default");
-            }
-            
+
             app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
         }

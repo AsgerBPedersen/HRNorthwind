@@ -30,6 +30,6 @@ namespace Northwind.Entities.Models
         public virtual Shipper ShipViaNavigation { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
-        public int Id => OrderId;
+        public int Id => throw new NotImplementedException();
     }
 }

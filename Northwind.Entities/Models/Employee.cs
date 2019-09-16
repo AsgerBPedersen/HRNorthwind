@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Northwind.Entities.Models
 {
@@ -24,6 +24,7 @@ namespace Northwind.Entities.Models
         [RegularExpression("[a-zA-ZÆØÅæøå ]+", ErrorMessage = "Navn kan ikke indeholde andet en bogstaver")]
         [MaxLength(20, ErrorMessage = "Efternavn kan ikke være længere end 4.")]
         public string LastName { get; set; }
+        public string MiddleName { get; set; }
         [DisplayName("Fornavn")]
         [Required(ErrorMessage = "Du skal skrive et navn")]
         [RegularExpression("[a-zA-ZÆØÅæøå ]+", ErrorMessage = "Navn kan ikke indeholde andet en bogstaver")]
@@ -78,9 +79,11 @@ namespace Northwind.Entities.Models
         public virtual Employee ReportsToNavigation { get; set; }
         public virtual ICollection<EmployeeTerritory> EmployeeTerritories { get; set; }
         [ValidateDates(ErrorMessage = "Datoer må ikke overlappe")]
-        public virtual IList<Employment> Employments {
+        public virtual IList<Employment> Employments
+        {
             get => employments;
-            set {
+            set
+            {
                 var res = EmploymentsValidation(value);
                 if (!res.isValid)
                 {

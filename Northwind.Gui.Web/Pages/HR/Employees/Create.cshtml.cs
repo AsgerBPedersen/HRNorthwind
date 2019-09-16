@@ -24,7 +24,7 @@ namespace Northwind.Gui.Web.Pages.Employees
         public Employee Employee { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
-            ViewData["ReportsTo"] = new SelectList(await _context.GetEmployees(), "EmployeeId", "FirstName");
+            ViewData["ReportsTo"] = new SelectList(await _context.GetEmployees(), "Id", "FirstName");
             return Page();
         }
 
