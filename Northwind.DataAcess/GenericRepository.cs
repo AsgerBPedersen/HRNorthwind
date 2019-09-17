@@ -25,7 +25,7 @@ namespace Northwind.DataAcess
 
         public virtual async Task<T> GetById(int id, string children)
         {
-            return await _dbContext.Set<T>().Include(children).SingleOrDefaultAsync(t => t.Id == id);
+            return await Task.Run(() => _dbContext.Set<T>().Include(children).AsEnumerable().SingleOrDefault(e => e.Id == id));
         }
         public async Task<IList<T>> List()
         {

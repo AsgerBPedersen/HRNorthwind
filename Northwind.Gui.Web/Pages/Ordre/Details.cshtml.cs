@@ -9,23 +9,34 @@ using Northwind.Entities.Models;
 
 namespace Northwind.Gui.Web.Pages.Ordre
 {
-    public class IndexModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly Northwind.Entities.Models.NorthwindContext _context;
 
-        public IndexModel(Northwind.Entities.Models.NorthwindContext context)
+        public DetailsModel(Northwind.Entities.Models.NorthwindContext context)
         {
             _context = context;
         }
 
-        public IList<Order> Order { get;set; }
+        public Order Order { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             Order = await _context.Orders
                 .Include(o => o.Customer)
                 .Include(o => o.Employee)
-                .Include(o => o.ShipViaNavigation).ToListAsync();
+                .Include(o => o.ShipViaNavigation).FirstOrDefaultAsync(m => m.OrderId == id);
+
+            if (Order == null)
+            {
+                return NotFound();
+            }
+            return Page();
         }
     }
 }

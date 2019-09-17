@@ -20,13 +20,14 @@ namespace Northwind.Gui.Web
         {
             services.AddMvc().AddRazorPagesOptions(options =>
             {
-                options.Conventions.AddPageRoute("/HR/Employees/Index", "");
+                options.Conventions.AddPageRoute("/Ordre/Index", "");
             }).AddMvcOptions(options => {
                 options.EnableEndpointRouting = false;
             });
             //services.AddDbContext<NorthwindContext>();
             services.AddScoped<IEmployeeService, EmployeeService>();
-            
+            services.AddScoped<NorthwindContext, NorthwindContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
