@@ -28,7 +28,7 @@ namespace Northwind.Gui.Web.Pages.Ordre
 
         public async Task OnGetNextShipmentsAsync()
         {
-            Order = await _context.GetOrders();
+            Order = await _context.GetNextShipments();
         }
     }
 }

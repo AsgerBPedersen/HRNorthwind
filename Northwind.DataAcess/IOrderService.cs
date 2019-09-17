@@ -10,6 +10,8 @@ namespace Northwind.DataAcess
     {
         Task<IList<Order>> GetOrders();
 
+        Task<IList<Order>> GetNextShipments();
+
         Task<Order> GetById(int id);
 
         Task<int> AddOrder(Order order);

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -88,6 +90,12 @@ namespace Northwind.DataAcess
         public async Task<IList<Customer>> GetCustomers()
         {
             return await Customers.List();
+        }
+
+        public async Task<IList<Order>> GetNextShipments()
+        {
+            IList<Order> list = await Orders.List(new string[3] { "Employee", "Customer", "ShipViaNavigation" });
+            return list.Cast<Order>().Where(o => o.ShippedDate == null).OrderBy(d => d.RequiredDate).Take(25).ToList();
         }
 
         public async Task<IList<Order>> GetOrders()

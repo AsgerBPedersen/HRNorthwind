@@ -11,7 +11,8 @@
     <a asp-page="Create">Opret ny</a>
 </p>
 <p>
-    <input type="submit" value="Se seneste ordre til afsendelse" class="btn btn-primary" asp-page-handler="GetNextShipments" />
+    <a class="btn btn-primary" asp-page-handler="NextShipments">Se kommende afsendelser</a><span> - </span>
+    <a asp-page="Index">Hele listen</a>
 </p>
 <table class="table">
     <thead>
