@@ -24,5 +24,6 @@ namespace Northwind.DataAcess
 
         Task<IList<Shipper>> GetShippers();
 
+        Task<IList<Invoice>> GetInvoice(int id);
     }
 }

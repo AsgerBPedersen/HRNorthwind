@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Northwind.Entities.Models
 {
@@ -8,7 +9,7 @@ namespace Northwind.Entities.Models
     {
         public Order()
         {
-            OrderDetails = new HashSet<OrderDetail>();
+            OrderDetails = new HashSet<OrderDetail>().ToList();
         }
 
         public int OrderId { get; set; }
@@ -45,7 +46,7 @@ namespace Northwind.Entities.Models
         [DisplayName("Sendes via")]
         public virtual Shipper ShipViaNavigation { get; set; }
         [DisplayName("Ordre detaljer")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual IList<OrderDetail> OrderDetails { get; set; }
 
         public int Id => OrderId;
     }

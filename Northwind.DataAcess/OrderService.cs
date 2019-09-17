@@ -84,7 +84,7 @@ namespace Northwind.DataAcess
 
         public async Task<Order> GetById(int id)
         {
-            return await Orders.GetById(id, new string[3] { "Employee", "Customer", "ShipViaNavigation" });
+            return await Orders.GetById(id, new string[4] { "Employee", "Customer", "ShipViaNavigation", "OrderDetails.Product" });
         }
 
         public async Task<IList<Customer>> GetCustomers()
@@ -112,6 +112,11 @@ namespace Northwind.DataAcess
         public async Task<int> UpdateOrder(Order order)
         {
             return await Orders.Edit(order);
+        }
+
+        public async Task<IList<Invoice>> GetInvoice(int id)
+        {
+            return await context.Invoices.Where(i => i.OrderId == id).ToListAsync();
         }
     }
 }
