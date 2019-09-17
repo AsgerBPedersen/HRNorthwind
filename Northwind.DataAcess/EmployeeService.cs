@@ -10,7 +10,7 @@ namespace Northwind.DataAcess
 {
     public class EmployeeService : IEmployeeService
     {
-        private NorthwindContext context = new NorthwindContext();
+        private readonly NorthwindContext context = new NorthwindContext();
         private IGenericRepository<Employee> _employees;
         private IGenericRepository<Employment> _employments;
         private IGenericRepository<EmployeeTerritory> _teritories;
@@ -109,13 +109,13 @@ namespace Northwind.DataAcess
 
         public async Task<Employee> GetById(int id)
         {
-            return await Employees.GetById(id, "Employments");
+            return await Employees.GetById(id, new string[1] { "Employments" });
         }
 
 
         public async Task<IList<Employee>> GetEmployees()
         {
-            return await Employees.List("Employments");
+            return await Employees.List(new string[1] { "Employments"});
         }
 
         public async Task<IList<Employee>> GetEmployeesFiltered(string country, string title, string region, string firstName, string lastName, string initials)
@@ -129,7 +129,7 @@ namespace Northwind.DataAcess
         }
         public async Task<int> DeleteEmployment(int employeeId, int employmentId)
         {
-            var employees = await Employees.List("Employments");
+            var employees = await Employees.List(new string[1] {"Employments"});
             var employee = employees.SingleOrDefault(e => e.EmployeeId == employeeId);
             if (employee == null)
             {
@@ -139,7 +139,7 @@ namespace Northwind.DataAcess
         }
         public async Task<int> AddEmployment(int id)
         {
-            var employee = await Employees.GetById(id, "Employments");
+            var employee = await Employees.GetById(id, new string[1] { "Employments" });
             var newEmployment = new Employment() { HireDate = DateTime.Now.Date, EmployeeId = employee.EmployeeId };
             return await Employments.Add(newEmployment);
         }

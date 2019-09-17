@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Northwind.Entities.Models
 {
-    public partial class Customer
+    public partial class Customer : IEntityWithId
     {
         public Customer()
         {
@@ -25,5 +25,7 @@ namespace Northwind.Entities.Models
 
         public virtual ICollection<CustomerCustomerDemo> CustomerCustomerDemoes { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+
+        public int Id => throw new NotImplementedException();
     }
 }

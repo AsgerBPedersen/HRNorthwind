@@ -11,11 +11,11 @@ namespace Northwind.DataAcess
     {
         Task<T> GetById(int id);
 
-        Task<T> GetById(int id, string children);
+        Task<T> GetById(int id, string[] children);
         Task<IList<T>> List();
-        Task<IList<T>> List(string children);
+        Task<IList<T>> List(string[] children);
         Task<IList<T>> List(Expression<Func<T, bool>> predicate);
-        Task<IList<T>> List(Expression<Func<T, bool>> filter, string children);
+        Task<IList<T>> List(Expression<Func<T, bool>> filter, string[] children);
         Task<int> Add(T entity);
         Task<int> Delete(T entity);
         Task<int> Edit(T entity);

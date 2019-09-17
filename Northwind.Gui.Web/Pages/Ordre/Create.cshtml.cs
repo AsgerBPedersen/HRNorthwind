@@ -5,24 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Northwind.DataAcess;
 using Northwind.Entities.Models;
 
 namespace Northwind.Gui.Web.Pages.Ordre
 {
     public class CreateModel : PageModel
     {
-        private readonly Northwind.Entities.Models.NorthwindContext _context;
+        private readonly IOrderService _context;
+        private readonly IEmployeeService _emps;
 
-        public CreateModel(Northwind.Entities.Models.NorthwindContext context)
+        public CreateModel(IOrderService context, IEmployeeService emps)
         {
             _context = context;
+            _emps = emps;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
-        ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
-        ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FirstName");
-        ViewData["ShipVia"] = new SelectList(_context.Shippers, "ShipperId", "CompanyName");
+        ViewData["CustomerId"] = new SelectList(await _context.GetCustomers(), "CustomerId", "CustomerId");
+        ViewData["EmployeeId"] = new SelectList(await _emps.GetEmployees(), "EmployeeId", "FirstName");
+        ViewData["ShipVia"] = new SelectList(await _context.GetShippers(), "ShipperId", "CompanyName");
             return Page();
         }
 
@@ -36,8 +39,7 @@ namespace Northwind.Gui.Web.Pages.Ordre
                 return Page();
             }
 
-            _context.Orders.Add(Order);
-            await _context.SaveChangesAsync();
+            await _context.AddOrder(Order);
 
             return RedirectToPage("./Index");
         }

@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Northwind.DataAcess;
 using Northwind.Entities.Models;
 
 namespace Northwind.Gui.Web.Pages.Ordre
 {
     public class DeleteModel : PageModel
     {
-        private readonly Northwind.Entities.Models.NorthwindContext _context;
+        private readonly IOrderService _context;
 
-        public DeleteModel(Northwind.Entities.Models.NorthwindContext context)
+        public DeleteModel(IOrderService context)
         {
             _context = context;
         }
@@ -28,10 +29,7 @@ namespace Northwind.Gui.Web.Pages.Ordre
                 return NotFound();
             }
 
-            Order = await _context.Orders
-                .Include(o => o.Customer)
-                .Include(o => o.Employee)
-                .Include(o => o.ShipViaNavigation).FirstOrDefaultAsync(m => m.OrderId == id);
+            Order = await _context.GetById((int)id);
 
             if (Order == null)
             {
@@ -47,12 +45,12 @@ namespace Northwind.Gui.Web.Pages.Ordre
                 return NotFound();
             }
 
-            Order = await _context.Orders.FindAsync(id);
+            Order = await _context.GetById((int)id);
 
             if (Order != null)
             {
-                _context.Orders.Remove(Order);
-                await _context.SaveChangesAsync();
+
+                await _context.DeleteOrder(Order);
             }
 
             return RedirectToPage("./Index");

@@ -26,6 +26,7 @@ namespace Northwind.Gui.Web
             });
             //services.AddDbContext<NorthwindContext>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<NorthwindContext, NorthwindContext>();
 
         }

@@ -12,10 +12,15 @@ namespace Northwind.DataAcess
 
         Task<Order> GetById(int id);
 
-        Task<int> AddOrder(Order employee);
+        Task<int> AddOrder(Order order);
 
-        Task DeleteOrder(Order employee);
+        Task DeleteOrder(Order order);
 
-        Task<int> UpdateOrder(Order employee);
+        Task<int> UpdateOrder(Order order);
+
+        Task<IList<Customer>> GetCustomers();
+
+        Task<IList<Shipper>> GetShippers();
+
     }
 }

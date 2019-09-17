@@ -2,35 +2,108 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Northwind.Entities.Models;
 
 namespace Northwind.DataAcess
 {
     public class OrderService : IOrderService
     {
-        public Task<int> AddOrder(Order employee)
+        private readonly NorthwindContext context = new NorthwindContext();
+        private IGenericRepository<Order> _orders;
+        private IGenericRepository<OrderDetail> _orderDetails;
+        private IGenericRepository<Customer> _customers;
+        private IGenericRepository<Shipper> _shippers;
+        #region properties
+        //instantiates a new repository if there isn't one already.
+        public IGenericRepository<Order> Orders
         {
-            throw new NotImplementedException();
+            get
+            {
+
+                if (this._orders == null)
+                {
+                    this._orders = new GenericRepository<Order>(context);
+                }
+                return _orders;
+            }
         }
 
-        public Task DeleteOrder(Order employee)
+        public IGenericRepository<Customer> Customers
         {
-            throw new NotImplementedException();
+            get
+            {
+
+                if (this._customers == null)
+                {
+                    this._customers = new GenericRepository<Customer>(context);
+                }
+                return _customers;
+            }
         }
 
-        public Task<Order> GetById(int id)
+        public IGenericRepository<Shipper> Shippers
         {
-            throw new NotImplementedException();
+            get
+            {
+
+                if (this._shippers == null)
+                {
+                    this._shippers = new GenericRepository<Shipper>(context);
+                }
+                return _shippers;
+            }
+        }
+        public IGenericRepository<OrderDetail> OrderDetails
+        {
+            get
+            {
+
+                if (this._orderDetails == null)
+                {
+                    this._orderDetails = new GenericRepository<OrderDetail>(context);
+                }
+                return _orderDetails;
+            }
+        }
+        #endregion
+        public async Task<int> AddOrder(Order order)
+        {
+            return await Orders.Add(order);
         }
 
-        public Task<IList<Order>> GetOrders()
+        public async Task DeleteOrder(Order order)
         {
-            throw new NotImplementedException();
+            var orderDetails = await OrderDetails.List(o => o.OrderId == order.Id);
+
+            await OrderDetails.DeleteRange(orderDetails);
+            await Orders.Delete(order);
         }
 
-        public Task<int> UpdateOrder(Order employee)
+        public async Task<Order> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await Orders.GetById(id, new string[3] { "Employee", "Customer", "ShipViaNavigation" });
+        }
+
+        public async Task<IList<Customer>> GetCustomers()
+        {
+            return await Customers.List();
+        }
+
+        public async Task<IList<Order>> GetOrders()
+        {
+            
+            return await Orders.List(new string[3] {"Employee","Customer","ShipViaNavigation"});
+        }
+
+        public async Task<IList<Shipper>> GetShippers()
+        {
+            return await Shippers.List();
+        }
+
+        public async Task<int> UpdateOrder(Order order)
+        {
+            return await Orders.Edit(order);
         }
     }
 }
