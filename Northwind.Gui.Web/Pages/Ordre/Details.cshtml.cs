@@ -5,18 +5,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Northwind.DataAcess;
 using Northwind.Entities.Models;
+using Northwind.WebServices;
+using Northwind.WebServices.Objects;
 
 namespace Northwind.Gui.Web.Pages.Ordre
 {
     public class DetailsModel : PageModel
     {
         private readonly IOrderService _context;
-
+        private ExchangeRates rates;
+        [BindProperty(SupportsGet = true)]
+        public string Selected { get; set; }
+        public List<SelectListItem> Currencies { get; set; }
         public DetailsModel(IOrderService context)
         {
+            rates = ExchangeRateService.GetRates();
+            Currencies = new List<SelectListItem>()
+            {
+                new SelectListItem("USD", "USD", true),
+                new SelectListItem("DKK", "DKK"),
+                new SelectListItem("EUR", "EUR"),
+                new SelectListItem("GBP", "GBP"),
+                new SelectListItem("CAD", "CAD")
+            };
             _context = context;
         }
 

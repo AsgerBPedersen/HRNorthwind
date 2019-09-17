@@ -6,6 +6,12 @@
 }
 
 <h1>Detaljer</h1>
+<div class="row col-6">
+    <form>
+        <select class="form-control col" asp-for="Selected" asp-items="@Model.Currencies"></select>
+        <input class="btn btn-secondary col mt-3" type="submit" value="Vælg valuta" />
+    </form>
+</div>
 
 <div>
     <h4>Ordre</h4>
@@ -113,7 +119,7 @@
                 Rabat: @Html.DisplayFor(model => model.Order.OrderDetails[i].Discount)
             </dd>
         }
-        
+
         <dd><hr /></dd>
         <dd><h4>Faktura</h4></dd>
         @for (int i = 0; i < Model.Invoices.Count; i++)
