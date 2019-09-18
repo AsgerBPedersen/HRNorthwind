@@ -2,52 +2,267 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Northwind.Entities.Models
 {
     public partial class Order : IEntityWithId
     {
+        #region Fields
+        private int orderId;
+        private string customerId;
+        private int? employeeId;
+        private DateTime orderDate;
+        private DateTime? requiredDate;
+        private DateTime? shippedDate;
+        private int? shipVia;
+        private decimal? freight;
+        private string shipName;
+        private string shipAddress;
+        private string shipCity;
+        private string shipRegion;
+        private string shipPostalCode;
+        private string shipCountry;
+        private Customer customer;
+        private Employee employee;
+        private Shipper shipViaNavigation;
+        private IList<OrderDetail> orderDetails;
+        #endregion
+        /// <summary>
+        /// Instantiates new Order with Orderdetails.
+        /// </summary>
         public Order()
         {
             OrderDetails = new HashSet<OrderDetail>().ToList();
         }
-
-        public int OrderId { get; set; }
+        #region Properties
+        /// <summary>
+        /// Gets or sets OrderId
+        /// </summary>
+        public int OrderId
+        {
+            get => orderId;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Ids can't be 0 or less.");
+                }
+                orderId = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets CustomerId
+        /// </summary>
         [DisplayName("Kunde")]
-        public string CustomerId { get; set; }
+        public string CustomerId
+        {
+            get => customerId;
+            set
+            {
+                if (int.Parse(value) <= 0)
+                {
+                    throw new ArgumentException("Ids can't be 0 or less.");
+                }
+                customerId = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets EmployeeId
+        /// </summary>
         [DisplayName("Ansat")]
-        public int? EmployeeId { get; set; }
+        public int? EmployeeId
+        {
+            get => employeeId;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Ids can't be 0 or less.");
+                }
+                employeeId = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets Orderdate
+        /// </summary>
         [DisplayName("Ordre dato")]
-        public DateTime? OrderDate { get; set; }
+        public DateTime OrderDate
+        {
+            get => orderDate;
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Order date can't be null");
+                }
+                orderDate = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets RequiredDate
+        /// </summary>
         [DisplayName("Leverings dato")]
-        public DateTime? RequiredDate { get; set; }
+        public DateTime? RequiredDate
+        {
+            get => requiredDate;
+            set
+            {
+                if (value != null)
+                {
+                    var res = ValidateRequiredDate((DateTime)value, OrderDate);
+                    if (!res.isValid)
+                    {
+                        throw new ArgumentException(res.Error);
+                    }
+                }
+                requiredDate = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets ShippedDate
+        /// </summary>
         [DisplayName("Afsendelses dato")]
-        public DateTime? ShippedDate { get; set; }
+        public DateTime? ShippedDate
+        {
+            get => shippedDate;
+            set
+            {
+                if (value != null)
+                {
+                    var res = ValidateShippeddDate((DateTime)value, OrderDate);
+                    if (!res.isValid)
+                    {
+                        throw new ArgumentException(res.Error);
+                    }
+                }
+                shippedDate = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets ShipVia
+        /// </summary>
         [DisplayName("Sendes via")]
-        public int? ShipVia { get; set; }
+        public int? ShipVia { get => shipVia; set => shipVia = value; }
         [DisplayName("Vægt")]
-        public decimal? Freight { get; set; }
+        public decimal? Freight
+        {
+            get => freight;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Freight can't be less than 0.");
+                }
+                freight = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets ShipName
+        /// </summary>
         [DisplayName("Modtager")]
-        public string ShipName { get; set; }
+        public string ShipName
+        {
+            get => shipName;
+            set
+            {
+                if (!Regex.IsMatch(value, @"^[a-zA-ZæøåÆØÅ]+$"))
+                {
+                    throw new ArgumentException("Name can only cotain letters.");
+                }
+                shipName = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets ShipAddress
+        /// </summary>
         [DisplayName("Adresse")]
-        public string ShipAddress { get; set; }
+        public string ShipAddress { get => shipAddress; set => shipAddress = value; }
+        /// <summary>
+        /// Gets or sets ShipCity
+        /// </summary>
         [DisplayName("By")]
-        public string ShipCity { get; set; }
+        public string ShipCity { get => shipCity; set => shipCity = value; }
+        /// <summary>
+        /// Gets or sets ShipRegion
+        /// </summary>
         [DisplayName("Region")]
-        public string ShipRegion { get; set; }
+        public string ShipRegion { get => shipRegion; set => shipRegion = value; }
+        /// <summary>
+        /// Gets or sets PostalCode
+        /// </summary>
         [DisplayName("Postnummer")]
-        public string ShipPostalCode { get; set; }
+        public string ShipPostalCode
+        {
+            get => shipPostalCode;
+            set
+            {
+                if (!Regex.IsMatch(value, @"^[0-9]+$"))
+                {
+                    throw new ArgumentException("Postal code can only contain letters");
+                }
+                shipPostalCode = value;
+            }
+        }
+        /// <summary>
+        /// Gets or sets ShipCountry
+        /// </summary>
         [DisplayName("Land")]
-        public string ShipCountry { get; set; }
+        public string ShipCountry { get => shipCountry; set => shipCountry = value; }
+        /// <summary>
+        /// Gets or sets Customer
+        /// </summary>
         [DisplayName("Kunde")]
-        public virtual Customer Customer { get; set; }
+        public virtual Customer Customer { get => customer; set => customer = value; }
+        /// <summary>
+        /// Gets or sets Employee
+        /// </summary>
         [DisplayName("Ansat")]
-        public virtual Employee Employee { get; set; }
+        public virtual Employee Employee { get => employee; set => employee = value; }
+        /// <summary>
+        /// Gets or sets ShipViaNavigation
+        /// </summary>
         [DisplayName("Sendes via")]
-        public virtual Shipper ShipViaNavigation { get; set; }
+        public virtual Shipper ShipViaNavigation { get => shipViaNavigation; set => shipViaNavigation = value; }
+        /// <summary>
+        /// Gets or sets OrderDetails
+        /// </summary>
         [DisplayName("Ordre detaljer")]
-        public virtual IList<OrderDetail> OrderDetails { get; set; }
-
+        public virtual IList<OrderDetail> OrderDetails { get => orderDetails; set => orderDetails = value; }
+        /// <summary>
+        /// Returns the Id needed for the generic repository
+        /// </summary>
         public int Id => OrderId;
+        #endregion
+        /// <summary>
+        /// Validates the RequiredDate againts the OrderDate
+        /// </summary>
+        /// <param name="requiredDate"></param>
+        /// <param name="orderDate"></param>
+        /// <returns></returns>
+        public static (bool isValid, string Error) ValidateRequiredDate(DateTime requiredDate, DateTime orderDate)
+        {
+            if (requiredDate > orderDate)
+            {
+                return (false, "Required date can't be set before order date.");
+            }
+
+            return (true, string.Empty);
+        }
+        /// <summary>
+        /// Validates the ShippedDate against the OrderDate
+        /// </summary>
+        /// <param name="ShippeddDate"></param>
+        /// <param name="orderDate"></param>
+        /// <returns></returns>
+        public static (bool isValid, string Error) ValidateShippeddDate(DateTime ShippeddDate, DateTime orderDate)
+        {
+            if (ShippeddDate > orderDate)
+            {
+                return (false, "Shipped date can't be set before order date.");
+            }
+
+            return (true, string.Empty);
+        }
     }
 }
