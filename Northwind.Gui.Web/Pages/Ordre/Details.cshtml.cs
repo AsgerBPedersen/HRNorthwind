@@ -47,6 +47,10 @@ namespace Northwind.Gui.Web.Pages.Ordre
             }
 
             Order = await _context.GetById((int)id);
+            if (Order == null)
+            {
+                return NotFound();
+            }
             Invoices = await _context.GetInvoice((int)id);
             TotalPrice = Order.OrderDetails.Sum(o => o.Quantity * o.UnitPrice * (decimal)(1 - o.Discount));
 
@@ -72,10 +76,7 @@ namespace Northwind.Gui.Web.Pages.Ordre
                 Selected = "USD";
             }
 
-            if (Order == null)
-            {
-                return NotFound();
-            }
+           
             return Page();
         }
 
@@ -87,7 +88,13 @@ namespace Northwind.Gui.Web.Pages.Ordre
             }
 
             Order = await _context.GetById((int)id);
+            if (Order == null)
+            {
+                return NotFound();
+            }
+
             Invoices = await _context.GetInvoice((int)id);
+
             TotalPrice = Order.OrderDetails.Sum(o => o.Quantity * o.UnitPrice * (decimal)(1 - o.Discount));
 
             if (rates != null)
@@ -112,10 +119,7 @@ namespace Northwind.Gui.Web.Pages.Ordre
             {
                 Selected = "USD";
             }
-            if (Order == null)
-            {
-                return NotFound();
-            }
+            
             return Page();
         }
     }
