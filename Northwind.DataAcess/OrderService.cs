@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Northwind.Entities.Models;
 
 namespace Northwind.DataAcess
-{
+{   
     public class OrderService : IOrderService
     {
         private readonly NorthwindContext context = new NorthwindContext();
@@ -18,7 +18,7 @@ namespace Northwind.DataAcess
         private IGenericRepository<Shipper> _shippers;
         #region properties
         /// <summary>
-        /// Gets Order repository. instantiates a new repository if there isn't one already.
+        /// Gets or sets Order repository. instantiates a new repository if there isn't one already.
         /// </summary>
         public IGenericRepository<Order> Orders
         {
@@ -31,9 +31,10 @@ namespace Northwind.DataAcess
                 }
                 return _orders;
             }
+            set => _orders = value;
         }
         /// <summary>
-        /// Gets Customer repository. instantiates a new repository if there isn't one already.
+        /// Gets or sets Customer repository. instantiates a new repository if there isn't one already.
         /// </summary>
         public IGenericRepository<Customer> Customers
         {
@@ -46,9 +47,10 @@ namespace Northwind.DataAcess
                 }
                 return _customers;
             }
+            set => _customers = value;
         }
         /// <summary>
-        /// Gets Shipper repository. instantiates a new repository if there isn't one already.
+        /// Gets or sets Shipper repository. instantiates a new repository if there isn't one already.
         /// </summary>
         public IGenericRepository<Shipper> Shippers
         {
@@ -61,9 +63,10 @@ namespace Northwind.DataAcess
                 }
                 return _shippers;
             }
+            set => _shippers = value;
         }
         /// <summary>
-        /// Gets OrderDetails repository. instantiates a new repository if there isn't one already.
+        /// Gets or sets OrderDetails repository. instantiates a new repository if there isn't one already.
         /// </summary>
         public IGenericRepository<OrderDetail> OrderDetails
         {
@@ -76,6 +79,7 @@ namespace Northwind.DataAcess
                 }
                 return _orderDetails;
             }
+            set => _orderDetails = value;
         }
         #endregion
         /// <summary>

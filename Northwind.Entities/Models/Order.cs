@@ -170,6 +170,10 @@ namespace Northwind.Entities.Models
                 {
                     throw new ArgumentException("Name can only cotain letters.");
                 }
+                if (value.Length > 40)
+                {
+                    throw new ArgumentException("Name can't be longer than 40 characters.");
+                }
                 shipName = value;
             }
         }
@@ -177,17 +181,46 @@ namespace Northwind.Entities.Models
         /// Gets or sets ShipAddress
         /// </summary>
         [DisplayName("Adresse")]
-        public string ShipAddress { get => shipAddress; set => shipAddress = value; }
+        public string ShipAddress { 
+            get => shipAddress;
+            set {
+                if (value.Length > 60)
+                {
+                    throw new ArgumentException("Address can't be longer than 60 characters.");
+                }
+                shipAddress = value;
+            } 
+        }
         /// <summary>
         /// Gets or sets ShipCity
         /// </summary>
         [DisplayName("By")]
-        public string ShipCity { get => shipCity; set => shipCity = value; }
+        public string ShipCity { 
+            get => shipCity; 
+            set
+            {
+                if (value.Length > 15)
+                {
+                    throw new ArgumentException("City can't be longer than 15 characters.");
+                }
+                shipCity = value;
+            }
+        }
         /// <summary>
         /// Gets or sets ShipRegion
         /// </summary>
         [DisplayName("Region")]
-        public string ShipRegion { get => shipRegion; set => shipRegion = value; }
+        public string ShipRegion {
+            get => shipRegion;
+            set
+            {
+                if (value.Length > 15)
+                {
+                    throw new ArgumentException("Region can't be longer than 15 characters.");
+                }
+                shipRegion = value;
+            }
+        }
         /// <summary>
         /// Gets or sets PostalCode
         /// </summary>
@@ -201,6 +234,10 @@ namespace Northwind.Entities.Models
                 {
                     throw new ArgumentException("Postal code can only contain letters");
                 }
+                if (value.Length > 10)
+                {
+                    throw new ArgumentException("Postal code can't be longer than 10 characters.");
+                }
                 shipPostalCode = value;
             }
         }
@@ -208,7 +245,17 @@ namespace Northwind.Entities.Models
         /// Gets or sets ShipCountry
         /// </summary>
         [DisplayName("Land")]
-        public string ShipCountry { get => shipCountry; set => shipCountry = value; }
+        public string ShipCountry { 
+            get => shipCountry;
+            set
+            {
+                if (value.Length > 15)
+                {
+                    throw new ArgumentException("Country can't be longer than 15 characters.");
+                }
+                shipCountry = value;
+            }
+        }
         /// <summary>
         /// Gets or sets Customer
         /// </summary>
@@ -242,7 +289,7 @@ namespace Northwind.Entities.Models
         /// <returns></returns>
         public static (bool isValid, string Error) ValidateRequiredDate(DateTime requiredDate, DateTime orderDate)
         {
-            if (requiredDate > orderDate)
+            if (requiredDate < orderDate)
             {
                 return (false, "Required date can't be set before order date.");
             }
@@ -257,7 +304,7 @@ namespace Northwind.Entities.Models
         /// <returns></returns>
         public static (bool isValid, string Error) ValidateShippeddDate(DateTime ShippeddDate, DateTime orderDate)
         {
-            if (ShippeddDate > orderDate)
+            if (ShippeddDate < orderDate)
             {
                 return (false, "Shipped date can't be set before order date.");
             }
