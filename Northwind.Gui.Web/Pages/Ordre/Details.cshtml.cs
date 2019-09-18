@@ -50,18 +50,26 @@ namespace Northwind.Gui.Web.Pages.Ordre
             Invoices = await _context.GetInvoice((int)id);
             TotalPrice = Order.OrderDetails.Sum(o => o.Quantity * o.UnitPrice * (decimal)(1 - o.Discount));
 
-            switch (Selected)
+            if (rates != null)
             {
-                case "DKK": ExchangeRate = (decimal)rates.rates.DKK;
-                    break;
-                case "EUR": ExchangeRate = (decimal)rates.rates.EUR;
-                    break;
-                case "GBP":
-                    ExchangeRate = (decimal)rates.rates.GBP;
-                    break;
-                case "¨CAD":
-                    ExchangeRate = (decimal)rates.rates.CAD;
-                    break;
+                switch (Selected)
+                {
+                    case "DKK":
+                        ExchangeRate = (decimal)rates.rates.DKK;
+                        break;
+                    case "EUR":
+                        ExchangeRate = (decimal)rates.rates.EUR;
+                        break;
+                    case "GBP":
+                        ExchangeRate = (decimal)rates.rates.GBP;
+                        break;
+                    case "¨CAD":
+                        ExchangeRate = (decimal)rates.rates.CAD;
+                        break;
+                }
+            } else
+            {
+                Selected = "USD";
             }
 
             if (Order == null)
@@ -82,20 +90,27 @@ namespace Northwind.Gui.Web.Pages.Ordre
             Invoices = await _context.GetInvoice((int)id);
             TotalPrice = Order.OrderDetails.Sum(o => o.Quantity * o.UnitPrice * (decimal)(1 - o.Discount));
 
-            switch (Selected)
+            if (rates != null)
             {
-                case "DKK":
-                    ExchangeRate = (decimal)rates.rates.DKK;
-                    break;
-                case "EUR":
-                    ExchangeRate = (decimal)rates.rates.EUR;
-                    break;
-                case "GBP":
-                    ExchangeRate = (decimal)rates.rates.GBP;
-                    break;
-                case "¨CAD":
-                    ExchangeRate = (decimal)rates.rates.CAD;
-                    break;
+                switch (Selected)
+                {
+                    case "DKK":
+                        ExchangeRate = (decimal)rates.rates.DKK;
+                        break;
+                    case "EUR":
+                        ExchangeRate = (decimal)rates.rates.EUR;
+                        break;
+                    case "GBP":
+                        ExchangeRate = (decimal)rates.rates.GBP;
+                        break;
+                    case "¨CAD":
+                        ExchangeRate = (decimal)rates.rates.CAD;
+                        break;
+                }
+            }
+            else
+            {
+                Selected = "USD";
             }
             if (Order == null)
             {

@@ -20,7 +20,7 @@ namespace Northwind.WebServices
                 catch (Exception)
                 {
 
-                    throw;
+                    res = null;
                 }
             }
             return res;
