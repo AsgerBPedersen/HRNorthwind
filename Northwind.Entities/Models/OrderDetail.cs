@@ -15,6 +15,6 @@ namespace Northwind.Entities.Models
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
 
-        public int Id => throw new NotImplementedException();
+        public int Id => OrderId;
     }
 }

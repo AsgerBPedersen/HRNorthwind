@@ -60,10 +60,6 @@ namespace Northwind.Entities.Models
             get => customerId;
             set
             {
-                if (int.Parse(value) <= 0)
-                {
-                    throw new ArgumentException("Ids can't be 0 or less.");
-                }
                 customerId = value;
             }
         }
@@ -144,7 +140,7 @@ namespace Northwind.Entities.Models
         /// </summary>
         [DisplayName("Sendes via")]
         public int? ShipVia { get => shipVia; set => shipVia = value; }
-        [DisplayName("Vægt")]
+        [DisplayName("Fragt")]
         public decimal? Freight
         {
             get => freight;
@@ -166,13 +162,12 @@ namespace Northwind.Entities.Models
             get => shipName;
             set
             {
-                if (!Regex.IsMatch(value, @"^[a-zA-ZæøåÆØÅ]+$"))
+                if (value != null)
                 {
-                    throw new ArgumentException("Name can only cotain letters.");
-                }
-                if (value.Length > 40)
-                {
-                    throw new ArgumentException("Name can't be longer than 40 characters.");
+                    if (value.Length > 60)
+                    {
+                        throw new ArgumentException("Address can't be longer than 60 characters.");
+                    }
                 }
                 shipName = value;
             }
@@ -184,9 +179,12 @@ namespace Northwind.Entities.Models
         public string ShipAddress { 
             get => shipAddress;
             set {
-                if (value.Length > 60)
+                if (value != null)
                 {
-                    throw new ArgumentException("Address can't be longer than 60 characters.");
+                    if (value.Length > 60)
+                    {
+                        throw new ArgumentException("Address can't be longer than 60 characters.");
+                    }
                 }
                 shipAddress = value;
             } 
@@ -199,9 +197,12 @@ namespace Northwind.Entities.Models
             get => shipCity; 
             set
             {
-                if (value.Length > 15)
+                if (value != null)
                 {
-                    throw new ArgumentException("City can't be longer than 15 characters.");
+                    if (value.Length > 15)
+                    {
+                        throw new ArgumentException("City can't be longer than 15 characters.");
+                    }
                 }
                 shipCity = value;
             }
@@ -214,9 +215,12 @@ namespace Northwind.Entities.Models
             get => shipRegion;
             set
             {
-                if (value.Length > 15)
+                if (value != null)
                 {
-                    throw new ArgumentException("Region can't be longer than 15 characters.");
+                    if (value.Length > 15)
+                    {
+                        throw new ArgumentException("Region can't be longer than 15 characters.");
+                    }
                 }
                 shipRegion = value;
             }
@@ -230,13 +234,16 @@ namespace Northwind.Entities.Models
             get => shipPostalCode;
             set
             {
-                if (!Regex.IsMatch(value, @"^[0-9]+$"))
+                if (value != null)
                 {
-                    throw new ArgumentException("Postal code can only contain letters");
-                }
-                if (value.Length > 10)
-                {
-                    throw new ArgumentException("Postal code can't be longer than 10 characters.");
+                    if (!Regex.IsMatch(value, @"^[0-9]+$"))
+                    {
+                        throw new ArgumentException("Postal code can only contain letters");
+                    }
+                    if (value.Length > 10)
+                    {
+                        throw new ArgumentException("Postal code can't be longer than 10 characters.");
+                    }
                 }
                 shipPostalCode = value;
             }
@@ -249,9 +256,12 @@ namespace Northwind.Entities.Models
             get => shipCountry;
             set
             {
-                if (value.Length > 15)
+                if (value != null)
                 {
-                    throw new ArgumentException("Country can't be longer than 15 characters.");
+                    if (value.Length > 15)
+                    {
+                        throw new ArgumentException("Country can't be longer than 15 characters.");
+                    }
                 }
                 shipCountry = value;
             }

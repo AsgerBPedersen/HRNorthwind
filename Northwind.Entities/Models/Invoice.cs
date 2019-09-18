@@ -52,7 +52,7 @@ namespace Northwind.Entities.Models
         [DisplayName("Rabat")]
         public float Discount { get; set; }
         public decimal? ExtendedPrice { get; set; }
-        [DisplayName("Vægt")]
+        [DisplayName("Fragt")]
         public decimal? Freight { get; set; }
     }
 }

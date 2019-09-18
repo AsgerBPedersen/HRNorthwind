@@ -90,5 +90,58 @@ namespace Northwind.Tests
 
             Assert.AreEqual(order, null);
         }
+
+        [TestMethod]
+        public void Valid_Mutation_1_Order()
+        {
+            Order order = new Order()
+                {
+                    OrderId = 1,
+                    CustomerId = "1",
+                    EmployeeId = 1,
+                    OrderDate = DateTime.Now.AddDays(-1),
+                    RequiredDate = DateTime.Now,
+                    ShippedDate = DateTime.Now,
+                    Freight = 20,
+                    ShipName = "Bob",
+                    ShipAddress = "Bob vej 2",
+                    ShipCity = "Byen Hat",
+                    ShipRegion = "Sommerstad",
+                    ShipPostalCode = "123",
+                    ShipCountry = "asd"
+                };
+
+            int newId = 2;
+            order.OrderId = newId;
+
+            Assert.AreEqual(order.OrderId, newId);
+
+        }
+
+        [TestMethod]
+        public void Invalid_Mutation_1_Order()
+        {
+            Order order = new Order()
+            {
+                OrderId = 1,
+                CustomerId = "1",
+                EmployeeId = 1,
+                OrderDate = DateTime.Now.AddDays(-1),
+                RequiredDate = DateTime.Now,
+                ShippedDate = DateTime.Now,
+                Freight = 20,
+                ShipName = "Bob",
+                ShipAddress = "Bob vej 2",
+                ShipCity = "Byen Hat",
+                ShipRegion = "Sommerstad",
+                ShipPostalCode = "123",
+                ShipCountry = "asd"
+            };
+
+            int newId = -2;
+
+            Assert.ThrowsException<ArgumentException>(() => order.OrderId = newId);
+
+        }
     }
 }

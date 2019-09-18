@@ -39,7 +39,7 @@
             @Html.DisplayNameFor(model => model.Order.Freight)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Order.Freight)
+            @(Math.Round((decimal)Model.Order.Freight * Model.ExchangeRate, 2)) @Model.Selected
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Order.ShipName)
@@ -97,7 +97,7 @@
         </dd>
     </dl>
     <hr />
-    <h4>Total Pris: @(Math.Round(Model.TotalPrice * Model.ExchangeRate, 2))</h4>
+    <h4>Total Pris: @(Math.Round(Model.TotalPrice * Model.ExchangeRate, 2)) @Model.Selected</h4>
     <hr />
     <h4>Ordre Detailjer</h4>
     <dl>
@@ -113,7 +113,7 @@
                 Antal: @Html.DisplayFor(model => model.Order.OrderDetails[i].Quantity)
             </dd>
             <dd class="col-sm-10">
-                Enheds pris:  @(Math.Round(Model.Order.OrderDetails[i].UnitPrice * Model.ExchangeRate))
+                Enheds pris:  @(Math.Round(Model.Order.OrderDetails[i].UnitPrice * Model.ExchangeRate, 2)) @Model.Selected
             </dd>
             <dd class="col-sm-10">
                 Rabat: @Html.DisplayFor(model => model.Order.OrderDetails[i].Discount)
@@ -232,7 +232,7 @@
             @Html.DisplayNameFor(model => model.Invoices[i].UnitPrice)
         </dt>
         <dd class="col-sm-10">
-            @(Math.Round(Model.Invoices[i].UnitPrice * Model.ExchangeRate))
+            @(Math.Round(Model.Invoices[i].UnitPrice * Model.ExchangeRate, 2)) @Model.Selected
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Invoices[i].Quantity)
@@ -250,7 +250,8 @@
             @Html.DisplayNameFor(model => model.Invoices[i].Freight)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Invoices[i].Freight)
+            
+            @(Math.Round((decimal)Model.Invoices[i].Freight * Model.ExchangeRate, 2)) @Model.Selected
         </dd>
         </dl>
     }

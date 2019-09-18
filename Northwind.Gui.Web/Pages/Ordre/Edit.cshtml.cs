@@ -6,17 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Northwind.DataAcess;
 using Northwind.Entities.Models;
 
 namespace Northwind.Gui.Web.Pages.Ordre
 {
     public class EditModel : PageModel
     {
-        private readonly Northwind.Entities.Models.NorthwindContext _context;
+        private readonly IOrderService _context;
+        private readonly IEmployeeService _emps;
 
-        public EditModel(Northwind.Entities.Models.NorthwindContext context)
+        public EditModel(IOrderService context, IEmployeeService emps)
         {
             _context = context;
+            _emps = emps;
         }
 
         [BindProperty]
@@ -29,18 +32,15 @@ namespace Northwind.Gui.Web.Pages.Ordre
                 return NotFound();
             }
 
-            Order = await _context.Orders
-                .Include(o => o.Customer)
-                .Include(o => o.Employee)
-                .Include(o => o.ShipViaNavigation).FirstOrDefaultAsync(m => m.OrderId == id);
+            Order = await _context.GetById((int)id);
 
             if (Order == null)
             {
                 return NotFound();
             }
-           ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
-           ViewData["EmployeeId"] = new SelectList(_context.Employees, "EmployeeId", "FirstName");
-           ViewData["ShipVia"] = new SelectList(_context.Shippers, "ShipperId", "CompanyName");
+           ViewData["CustomerId"] = new SelectList(await _context.GetCustomers(), "CustomerId", "CustomerId");
+           ViewData["EmployeeId"] = new SelectList(await _emps.GetEmployees(), "EmployeeId", "FirstName");
+           ViewData["ShipVia"] = new SelectList(await _context.GetShippers(), "ShipperId", "CompanyName");
             return Page();
         }
 
@@ -51,30 +51,31 @@ namespace Northwind.Gui.Web.Pages.Ordre
                 return Page();
             }
 
-            _context.Attach(Order).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrderExists(Order.OrderId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.UpdateOrder(Order);
 
             return RedirectToPage("./Index");
         }
 
-        private bool OrderExists(int id)
+
+        public async Task<IActionResult> OnPostAddOrderDetailAsync()
         {
-            return _context.Orders.Any(e => e.OrderId == id);
+            var newDetail = new OrderDetail();
+            Order.OrderDetails.Add(newDetail);
+            //TryValidateModel(Employee);
+            if (!ModelState.IsValid)
+            {
+                ViewData["CustomerId"] = new SelectList(await _context.GetCustomers(), "CustomerId", "CustomerId");
+                ViewData["EmployeeId"] = new SelectList(await _emps.GetEmployees(), "EmployeeId", "FirstName");
+                ViewData["ShipVia"] = new SelectList(await _context.GetShippers(), "ShipperId", "CompanyName"); ;
+                Order.OrderDetails.Remove(newDetail);
+                return Page();
+            }
+
+            await _context.UpdateOrder(Order);
+
+            return RedirectToPage("/HR/Employees/edit", new { id = Order.OrderId });
         }
+
+
     }
 }
