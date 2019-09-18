@@ -19,14 +19,15 @@ namespace Northwind.Gui.Web.Pages.Ordre
         private readonly IOrderService _context;
         private ExchangeRates rates;
         [BindProperty(SupportsGet = true)]
-        public string Selected { get; set; }
+        public string Selected { get; set; } = "USD";
+        public decimal ExchangeRate { get; set; } = 1;
         public List<SelectListItem> Currencies { get; set; }
         public DetailsModel(IOrderService context)
         {
             rates = ExchangeRateService.GetRates();
             Currencies = new List<SelectListItem>()
             {
-                new SelectListItem("USD", "USD", true),
+                new SelectListItem("USD", "USD"),
                 new SelectListItem("DKK", "DKK"),
                 new SelectListItem("EUR", "EUR"),
                 new SelectListItem("GBP", "GBP"),
@@ -48,6 +49,54 @@ namespace Northwind.Gui.Web.Pages.Ordre
             Order = await _context.GetById((int)id);
             Invoices = await _context.GetInvoice((int)id);
             TotalPrice = Order.OrderDetails.Sum(o => o.Quantity * o.UnitPrice * (decimal)(1 - o.Discount));
+
+            switch (Selected)
+            {
+                case "DKK": ExchangeRate = (decimal)rates.rates.DKK;
+                    break;
+                case "EUR": ExchangeRate = (decimal)rates.rates.EUR;
+                    break;
+                case "GBP":
+                    ExchangeRate = (decimal)rates.rates.GBP;
+                    break;
+                case "¨CAD":
+                    ExchangeRate = (decimal)rates.rates.CAD;
+                    break;
+            }
+
+            if (Order == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Order = await _context.GetById((int)id);
+            Invoices = await _context.GetInvoice((int)id);
+            TotalPrice = Order.OrderDetails.Sum(o => o.Quantity * o.UnitPrice * (decimal)(1 - o.Discount));
+
+            switch (Selected)
+            {
+                case "DKK":
+                    ExchangeRate = (decimal)rates.rates.DKK;
+                    break;
+                case "EUR":
+                    ExchangeRate = (decimal)rates.rates.EUR;
+                    break;
+                case "GBP":
+                    ExchangeRate = (decimal)rates.rates.GBP;
+                    break;
+                case "¨CAD":
+                    ExchangeRate = (decimal)rates.rates.CAD;
+                    break;
+            }
             if (Order == null)
             {
                 return NotFound();

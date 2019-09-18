@@ -7,9 +7,9 @@
 
 <h1>Detaljer</h1>
 <div class="row col-6">
-    <form>
+    <form method="post">
         <select class="form-control col" asp-for="Selected" asp-items="@Model.Currencies"></select>
-        <input class="btn btn-secondary col mt-3" type="submit" value="Vælg valuta" />
+        <input class="btn btn-secondary col mt-3" type="submit" value="Vælg valuta" asp-route-id="@Model.Order.OrderId"/>
     </form>
 </div>
 
@@ -97,7 +97,7 @@
         </dd>
     </dl>
     <hr />
-    <h4>Total Pris: @Html.DisplayFor(model => model.TotalPrice)</h4>
+    <h4>Total Pris: @(Math.Round(Model.TotalPrice * Model.ExchangeRate, 2))</h4>
     <hr />
     <h4>Ordre Detailjer</h4>
     <dl>
@@ -113,146 +113,148 @@
                 Antal: @Html.DisplayFor(model => model.Order.OrderDetails[i].Quantity)
             </dd>
             <dd class="col-sm-10">
-                Enheds pris: @Html.DisplayFor(model => model.Order.OrderDetails[i].UnitPrice)
+                Enheds pris:  @(Math.Round(Model.Order.OrderDetails[i].UnitPrice * Model.ExchangeRate))
             </dd>
             <dd class="col-sm-10">
                 Rabat: @Html.DisplayFor(model => model.Order.OrderDetails[i].Discount)
             </dd>
         }
-
-        <dd><hr /></dd>
-        <dd><h4>Faktura</h4></dd>
-        @for (int i = 0; i < Model.Invoices.Count; i++)
-        {
-            <dd><h4>#@(i + 1)</h4></dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].ShipName)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].ShipName)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].ShipAddress)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].ShipAddress)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].ShipCity)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].ShipCity)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].ShipPostalCode)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].ShipPostalCode)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].ShipCountry)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].Country)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].CustomerName)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].CustomerName)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].Address)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].Address)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].City)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].City)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].Region)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].Region)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].PostalCode)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].PostalCode)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].Country)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].Country)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].Salesperson)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].Salesperson)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].OrderDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].OrderDate)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].RequiredDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].RequiredDate)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].ShippedDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].ShippedDate)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].ShipperName)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].ShipperName)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].ProductName)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].ProductName)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].UnitPrice)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].UnitPrice)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].Quantity)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].Quantity)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].Discount)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].Discount)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Invoices[i].Freight)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Invoices[i].Freight)
-            </dd>
-        }
     </dl>
+    <hr />
+    <h4>Faktura</h4>
+    @for (int i = 0; i < Model.Invoices.Count; i++)
+    {
+        <h4>#@(i + 1)</h4>
+        <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].ShipName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].ShipName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].ShipAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].ShipAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].ShipCity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].ShipCity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].ShipPostalCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].ShipPostalCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].ShipCountry)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].Country)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].CustomerName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].CustomerName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].Region)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].Region)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].PostalCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].PostalCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].Country)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].Country)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].Salesperson)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].Salesperson)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].OrderDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].OrderDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].RequiredDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].RequiredDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].ShippedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].ShippedDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].ShipperName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].ShipperName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].ProductName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].ProductName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].UnitPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @(Math.Round(Model.Invoices[i].UnitPrice * Model.ExchangeRate))
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].Quantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].Discount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].Discount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoices[i].Freight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoices[i].Freight)
+        </dd>
+        </dl>
+    }
+
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Order.OrderId">Rediger</a> |
